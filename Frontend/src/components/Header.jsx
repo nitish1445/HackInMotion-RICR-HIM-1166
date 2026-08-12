@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useNavigate } from "react-router-dom";
 import ThemeToggle from "./ThemeToggle";
 import logo from "../assets/image/logo.png";
 import { useAuth } from "../context/AuthContext";
@@ -8,15 +8,14 @@ const navItems = [
   { label: "Home", to: "/" },
   { label: "About", to: "/about" },
   { label: "Contact", to: "/contact" },
-  { label: "Documentation", to: "/documentaion" },
+  // { label: "Documentation", to: "/documentaion" },
   { label: "Dashboard", to: "/dashboard" },
 ];
 
 const Header = ({ theme, setTheme }) => {
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
-  //   const { user, isLogin } = useAuth();
-  const user = null;
-  const isLogin = false;
+  const { user, isLogin } = useAuth();
   const profileImage = user?.profileImage?.url || user?.profile || "";
   const displayName = user?.fullName || user?.name || "User";
 
@@ -31,7 +30,7 @@ const Header = ({ theme, setTheme }) => {
     <header className="fixed inset-x-0 top-0 z-9999 overflow-visible border-b border-primary-100 dark:border-white/5 bg-white/80 dark:bg-surface-dark/80 backdrop-blur-md">
       {/* Main Header */}
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="mx-auto flex h-16 items-center justify-between ">
           {/* Left: Logo */}
 
@@ -52,7 +51,7 @@ const Header = ({ theme, setTheme }) => {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-1">
+          <nav className="hidden md:flex items-center gap-3">
             {navItems.map((item) => (
               <NavLink
                 key={item.to}
@@ -100,19 +99,19 @@ const Header = ({ theme, setTheme }) => {
               </Link>
             ) : (
               <>
-                <Link
-                  to="/login"
-                  className="px-4 py-2 text-sm font-medium rounded-lg text-ink-light dark:text-ink-dark bg-primary-50 dark:bg-white/5 hover:bg-primary-100 dark:hover:bg-white/10 transition-colors duration-200"
+                <button
+                  onClick={() => navigate("/login")}
+                  className="px-4 py-2 text-sm font-medium rounded-lg text-ink-light dark:text-ink-dark bg-primary-50 dark:bg-white/5 hover:bg-primary-100 dark:hover:bg-white/10 transition-colors duration-200 cursor-pointer"
                 >
                   Log in
-                </Link>
+                </button>
 
-                <Link
-                  to="/signup"
-                  className="px-4 py-2 text-sm font-medium rounded-lg bg-primary-500 text-white shadow-soft hover:bg-primary-600 transition-colors duration-200"
+                <button
+                  onClick={() => navigate("/signup")}
+                  className="px-4 py-2 text-sm font-medium rounded-lg bg-primary-500 text-white shadow-soft hover:bg-primary-600 transition-colors duration-200 cursor-pointer"
                 >
                   Sign up
-                </Link>
+                </button>
               </>
             )}
           </div>
@@ -232,21 +231,27 @@ const Header = ({ theme, setTheme }) => {
             </Link>
           ) : (
             <div className="grid grid-cols-1 gap-3">
-              <Link
-                to="/login"
-                onClick={() => setOpen(false)}
+              <button
+                type="button"
+                onClick={() => {
+                  setOpen(false);
+                  navigate("/login");
+                }}
                 className="w-full rounded-lg border border-primary-200 dark:border-primary-800 px-4 py-2.5 text-center text-sm font-medium text-ink-light dark:text-ink-dark hover:bg-primary-50 dark:hover:bg-white/5 transition-colors"
               >
                 Log in
-              </Link>
+              </button>
 
-              <Link
-                to="/signup"
-                onClick={() => setOpen(false)}
+              <button
+                type="button"
+                onClick={() => {
+                  setOpen(false);
+                  navigate("/signup");
+                }}
                 className="w-full rounded-lg bg-primary-500 px-4 py-2.5 text-center text-sm font-medium text-white hover:bg-primary-600 transition-colors"
               >
                 Sign up
-              </Link>
+              </button>
             </div>
           )}
         </div>

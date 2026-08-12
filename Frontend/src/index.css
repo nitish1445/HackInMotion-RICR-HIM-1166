@@ -34,7 +34,7 @@ select:focus-visible {
 }
 
 .terminal-titlebar {
-  @apply flex items-center gap-2 px-4 py-3 border-b border-primary-100 dark:border-primary-900/60 bg-primary-50/60 dark:bg-white/[0.03];
+  @apply flex items-center gap-2 px-4 py-3 border-b border-primary-100 dark:border-primary-900/60 bg-primary-50/60 dark:bg-white/3;
 }
 
 .terminal-dot {

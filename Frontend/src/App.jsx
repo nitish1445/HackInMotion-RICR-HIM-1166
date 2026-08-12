@@ -7,6 +7,8 @@ import { Toaster } from "react-hot-toast";
 import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
 import PrivacyPage from "./pages/PrivacyPage";
+import LoginPage from "./pages/LoginPage";
+import SignupPage from "./pages/SignupPage";
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -54,11 +56,13 @@ const App = () => {
     <div className="min-h-screen flex flex-col">
       <Header theme={theme} setTheme={setTheme} />
       <Toaster />
-      <main className="flex-1 pt-12">
+      <main className="flex-1 pt-16">
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/signup" element={<SignupPage />} />
           <Route path="/privacy" element={<PrivacyPage />} />
         </Routes>
       </main>
