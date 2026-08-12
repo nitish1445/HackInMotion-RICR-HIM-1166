@@ -1,1 +1,77 @@
-/* initial commit */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@import "tailwindcss";
+@config "../tailwind.config.js";
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-surface-light dark:bg-surface-dark text-ink-light dark:text-ink-dark font-body antialiased transition-colors duration-300;
+}
+
+::selection {
+  @apply bg-primary-300/50;
+}
+
+/* Focus visibility for accessibility */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid #2196F3;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Signature component: terminal-style window chrome, used across
+   the hero, course previews and the practice editor to keep the
+   "developer console" motif consistent across the whole product. */
+.terminal-window {
+  @apply relative rounded-xl border border-primary-200/60 dark:border-primary-900/60 bg-white dark:bg-panel-dark shadow-soft dark:shadow-soft-dark overflow-hidden;
+}
+
+.terminal-titlebar {
+  @apply flex items-center gap-2 px-4 py-3 border-b border-primary-100 dark:border-primary-900/60 bg-primary-50/60 dark:bg-white/[0.03];
+}
+
+.terminal-dot {
+  @apply w-2.5 h-2.5 rounded-full;
+}
+
+.code-line {
+  @apply font-mono text-sm leading-relaxed;
+}
+
+
+/* subtle background grid used sparingly, only behind hero content */
+.grid-fade {
+  background-image:
+    linear-gradient(to bottom, transparent, #F7FAFD),
+    linear-gradient(rgba(33,150,243,0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(33,150,243,0.08) 1px, transparent 1px);
+  background-size: 100% 100%, 32px 32px, 32px 32px;
+}
+
+.dark .grid-fade {
+  background-image:
+    linear-gradient(to bottom, transparent, #0A1120),
+    linear-gradient(rgba(33,150,243,0.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(33,150,243,0.12) 1px, transparent 1px);
+  background-size: 100% 100%, 32px 32px, 32px 32px;
+}
+
+/* custom scrollbar, kept minimal */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-primary-200 dark:bg-primary-900 rounded-full;
+}
+
