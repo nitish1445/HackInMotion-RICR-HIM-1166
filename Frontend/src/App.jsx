@@ -9,6 +9,7 @@ import ContactPage from "./pages/ContactPage";
 import PrivacyPage from "./pages/PrivacyPage";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
+import DashboardPage from "./pages/DashboardPage";
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -64,6 +65,7 @@ const App = () => {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/privacy" element={<PrivacyPage />} />
+          <Route path="/dashboard" element={<DashboardPage />} />
         </Routes>
       </main>
       {!isAuthPage && <Footer />}
