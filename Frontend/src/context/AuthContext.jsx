@@ -1,0 +1,36 @@
+import React, { useEffect, useState, useContext } from "react";
+
+const AuthContext = React.createContext();
+
+const getStoredUser = () => {
+  try {
+    const localUser = localStorage.getItem("EDUTECH USER");
+    if (localUser) return JSON.parse(localUser);
+
+    const sessionUser = sessionStorage.getItem("EDUTECH USER");
+    if (sessionUser) return JSON.parse(sessionUser);
+  } catch (error) {
+    console.error("Failed to parse stored user:", error);
+  }
+
+  return null;
+};
+
+export const AuthProvider = (props) => {
+  const [user, setUser] = useState(getStoredUser());
+  const [isLogin, setIsLogin] = useState(!!user);
+  const [role, setRole] = useState(user?.role || "");
+
+  useEffect(() => {
+    setIsLogin(!!user);
+    setRole(user?.role || "");
+  }, [user]);
+
+  const value = { user, setUser, isLogin, setIsLogin, role, setRole };
+
+  return (
+    <AuthContext.Provider value={value}>{props.children}</AuthContext.Provider>
+  );
+};
+
+export const useAuth = () => useContext(AuthContext);
