@@ -10,6 +10,19 @@ import PrivacyPage from "./pages/PrivacyPage";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import DashboardPage from "./pages/DashboardPage";
+import DashboardOverview from "./pages/dashboard/Overview";
+import GoalsPage from "./pages/dashboard/GoalPage";
+import CreateGoalPage from "./pages/dashboard/CreateGoalPage";
+import GoalDetailPage from "./pages/dashboard/GoalDetailPage";
+import StudyPlanPage from "./pages/dashboard/StudyPlanPage";
+import AIAssistantPage from "./pages/dashboard/AIAssistant";
+import TestsPage from "./pages/dashboard/TestsPage";
+import TestPage from "./pages/dashboard/TestPage";
+import ProgressPage from "./pages/dashboard/ProgressPage";
+import AchievementsPage from "./pages/dashboard/AchivementPage";
+import ProfilePage from "./pages/dashboard/ProfilePage";
+import SettingsPage from "./pages/dashboard/SettingsPage";
+
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -29,6 +42,7 @@ const App = () => {
   const [theme, setTheme] = useState("light");
   const { pathname } = useLocation();
   const isAuthPage = pathname === "/login" || pathname === "/signup";
+  const isDashboardRoute = pathname.startsWith("/dashboard");
 
   useEffect(() => {
     const root = document.documentElement;
@@ -39,25 +53,13 @@ const App = () => {
     }
   }, [theme]);
 
-  const ScrollToTop = () => {
-    const { pathname } = useLocation();
-
-    useEffect(() => {
-      window.scrollTo({
-        top: 0,
-        left: 0,
-        behavior: "instant",
-      });
-    }, [pathname]);
-
-    return null;
-  };
-
   return (
     <div className="min-h-screen flex flex-col">
-      <Header theme={theme} setTheme={setTheme} />
+      {!isDashboardRoute && <Header theme={theme} setTheme={setTheme} />}
+
       <Toaster />
-      <main className="flex-1 pt-16">
+
+      <main className={`flex-1 ${!isDashboardRoute ? "pt-16" : ""}`}>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
@@ -65,10 +67,51 @@ const App = () => {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/privacy" element={<PrivacyPage />} />
-          <Route path="/dashboard" element={<DashboardPage />} />
+
+          <Route
+            path="/dashboard/*"
+            element={<DashboardPage theme={theme} setTheme={setTheme} />}
+          >
+            {/* /dashboard */}
+            <Route index element={<DashboardOverview />} />
+
+            {/* /dashboard/goals */}
+            <Route path="goals" element={<GoalsPage />} />
+
+            {/* /dashboard/goals/new */}
+            <Route path="goals/new" element={<CreateGoalPage />} />
+
+            {/* /dashboard/goals/:goalId */}
+            <Route path="goals/:goalId" element={<GoalDetailPage />} />
+
+            {/* /dashboard/study-plan */}
+            <Route path="study-plan" element={<StudyPlanPage />} />
+
+            {/* /dashboard/ai-assistant */}
+            <Route path="ai-assistant" element={<AIAssistantPage />} />
+
+            {/* /dashboard/tests */}
+            <Route path="tests" element={<TestsPage />} />
+
+            {/* /dashboard/tests/:testId */}
+            <Route path="tests/:testId" element={<TestPage />} />
+
+            {/* /dashboard/progress */}
+            <Route path="progress" element={<ProgressPage />} />
+
+            {/* /dashboard/achievements */}
+            <Route path="achievements" element={<AchievementsPage />} />
+
+            {/* /dashboard/profile */}
+            <Route path="profile" element={<ProfilePage />} />
+
+            {/* /dashboard/settings */}
+            <Route path="settings" element={<SettingsPage />} />
+          </Route>
         </Routes>
       </main>
-      {!isAuthPage && <Footer />}
+
+      {!isAuthPage && !isDashboardRoute && <Footer />}
     </div>
   );
 };
