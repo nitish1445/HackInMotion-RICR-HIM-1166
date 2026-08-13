@@ -63,11 +63,6 @@ const accountItems = [
     icon: FiUser,
     path: "/dashboard/profile",
   },
-  {
-    label: "Settings",
-    icon: FiSettings,
-    path: "/dashboard/settings",
-  },
 ];
 
 function NavItems({ onNavigate }) {
@@ -222,7 +217,7 @@ function Sidebar({ isOpen, onClose }) {
           </div>
 
           {/* LOGOUT */}
-          <div className=" dark:border-white/5">
+          <div className="mt-3 dark:border-white/5">
             <button
               onClick={handleLogout}
               type="button"
@@ -249,18 +244,15 @@ function Sidebar({ isOpen, onClose }) {
         <div className="px-3 pb-3">
           <Link
             to="/dashboard/goals/new"
-            className="group flex items-center gap-3 rounded-xl bg-primary-500 px-3 py-3 text-white shadow-soft transition-colors hover:bg-primary-600"
+            className="group flex items-center gap-3 rounded-xl bg-primary-500 px-3 py-2 text-white shadow-soft transition-colors hover:bg-primary-600"
           >
-            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/10">
+            <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-white/10">
               <FiPlus size={16} />
             </span>
 
             <div>
-              <p className="text-xs font-semibold">New learning goal</p>
+              <p className="text-sm font-semibold"> Create Learning Goal</p>
 
-              <p className="mt-0.5 text-[9px] text-white/60">
-                Build a personalized path
-              </p>
             </div>
           </Link>
         </div>

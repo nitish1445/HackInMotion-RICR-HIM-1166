@@ -8,6 +8,7 @@ import cookieParser from "cookie-parser";
 import morgan from "morgan";
 import cloudinary from "./src/config/cloudinary.js";
 import AuthRouter from "./src/routers/authRouter.js";
+import UserRouter from "./src/routers/userRouter.js";
 import connectDB from "./src/config/db.js";
 
 const app = express();
@@ -27,6 +28,7 @@ app.use(cookieParser()); // Parse cookies from incoming requests
 app.use(morgan("dev")); // Log HTTP requests to the console
 
 app.use("/auth", AuthRouter);
+app.use("/user", UserRouter);
 
 //Health check route
 app.get("/", (req, res) => {

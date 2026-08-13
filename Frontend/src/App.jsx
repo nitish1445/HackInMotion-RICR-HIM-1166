@@ -21,7 +21,6 @@ import TestPage from "./pages/dashboard/TestPage";
 import ProgressPage from "./pages/dashboard/ProgressPage";
 import AchievementsPage from "./pages/dashboard/AchivementPage";
 import ProfilePage from "./pages/dashboard/ProfilePage";
-import SettingsPage from "./pages/dashboard/SettingsPage";
 
 
 const ScrollToTop = () => {
@@ -104,9 +103,6 @@ const App = () => {
 
             {/* /dashboard/profile */}
             <Route path="profile" element={<ProfilePage />} />
-
-            {/* /dashboard/settings */}
-            <Route path="settings" element={<SettingsPage />} />
           </Route>
         </Routes>
       </main>

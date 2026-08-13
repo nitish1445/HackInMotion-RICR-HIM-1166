@@ -16,6 +16,12 @@ const userSchema = new mongoose.Schema(
       trim: true,
     },
 
+    mobileNumber: {
+      type: String,
+      unique: true,
+      maxlength: 10,
+    },
+
     password: {
       type: String,
       required: true,
@@ -41,7 +47,7 @@ const userSchema = new mongoose.Schema(
 
     bio: {
       type: String,
-      default: "Full-stack developer in progress — Learn. Practice. Progress.",
+      default: "Full-stack developer in progress - Learn. Practice. Progress.",
       trim: true,
       maxlength: 250,
     },

@@ -21,12 +21,20 @@ export const AuthProvider = (props) => {
   const [isLogin, setIsLogin] = useState(!!user);
   const [role, setRole] = useState(user?.role || "");
 
+  const logout = () => {
+    setUser(null);
+    setIsLogin(false);
+    setRole("");
+    localStorage.removeItem("EDUTECH USER");
+    sessionStorage.removeItem("EDUTECH USER");
+  };
+
   useEffect(() => {
     setIsLogin(!!user);
     setRole(user?.role || "");
   }, [user]);
 
-  const value = { user, setUser, isLogin, setIsLogin, role, setRole };
+  const value = { user, setUser, isLogin, setIsLogin, role, setRole, logout };
 
   return (
     <AuthContext.Provider value={value}>{props.children}</AuthContext.Provider>

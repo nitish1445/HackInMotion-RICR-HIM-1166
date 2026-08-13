@@ -14,16 +14,20 @@ const DashboardPage = ({ theme, setTheme }) => {
 
   return (
     <div className="flex min-h-screen bg-primary-50/40 dark:bg-dark">
-      {/* ================= SIDEBAR ================= */}
+      {/* Sidebar */}
+
       <Sidebar isOpen={isSidebarOpen} onClose={() => setSidebarOpen(false)} />
 
-      {/* ================= MAIN ================= */}
+      {/* main */}
       <div className="flex min-w-0 flex-1 flex-col">
-        {/* ================= DASHBOARD NAVBAR ================= */}
+        {/* Dashboard Navbar */}
+
         <header className="sticky top-0 z-30 flex h-16 shrink-0 items-center justify-between border-b border-primary-100 bg-white/95 px-4 backdrop-blur dark:border-white/5 dark:bg-panel-dark/95 sm:px-6">
           {/* LEFT */}
+
           <div className="flex items-center gap-3">
             {/* Mobile Menu */}
+
             <button
               type="button"
               onClick={() => setSidebarOpen(true)}
@@ -34,26 +38,21 @@ const DashboardPage = ({ theme, setTheme }) => {
             </button>
 
             {/* EduTech */}
-            <div className="flex items-center gap-2.5">
-              {/* <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary-500 text-white">
-                <FaGraduationCap size={15} />
-              </div> */}
+            <div>
+              <p className="font-display text-base font-semibold text-ink-light dark:text-ink-dark">
+                Dashboard
+              </p>
 
-              <div className="">
-                <p className="font-display text-sm font-semibold text-ink-light dark:text-ink-dark">
-                  Dashboard
-                </p>
-
-                <p className="font-mono text-[9px] uppercase tracking-wider text-muted-light dark:text-muted-dark">
-                  Learning workspace
-                </p>
-              </div>
+              <p className="font-mono text-[9px] uppercase tracking-wider text-muted-light dark:text-muted-dark">
+                Learning workspace
+              </p>
             </div>
           </div>
 
           {/* RIGHT */}
           <div className="flex items-center gap-2">
             {/* Ask AI */}
+
             <Link
               to="/dashboard/ai-assistant"
               className="hidden items-center gap-2 rounded-lg border border-primary-100 px-3 py-2 text-xs font-medium text-ink-light transition-colors hover:bg-primary-50 sm:inline-flex dark:border-white/5 dark:text-ink-dark dark:hover:bg-white/5"
@@ -63,9 +62,11 @@ const DashboardPage = ({ theme, setTheme }) => {
             </Link>
 
             {/* Theme Toggle */}
+
             <ThemeToggle theme={theme} setTheme={setTheme} />
 
             {/* Profile */}
+            
             <Link
               to="/dashboard/profile"
               className="flex items-center gap-3 rounded-lg px-2 py-1.5 transition-colors hover:bg-primary-50 dark:hover:bg-white/5"
@@ -97,38 +98,10 @@ const DashboardPage = ({ theme, setTheme }) => {
               </div>
             </Link>
 
-            {/* <Link
-              to="/profile"
-              className="flex items-center gap-3 rounded-lg px-2 h-10 hover:bg-primary-50 dark:hover:bg-white/5 transition-colors duration-200"
-            >
-              <div className="min-w-0 text-right">
-                <p className="text-sm font-semibold text-ink-light dark:text-ink-dark truncate">
-                  Welcome back
-                </p>
-
-                <p className="-mt-0.5 text-xs text-muted-light dark:text-muted-dark">
-                  {displayName}
-                </p>
-              </div>
-
-              <div className="flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-full bg-primary-50 dark:bg-primary-900/20">
-                {profileImage ? (
-                  <img
-                    src={profileImage}
-                    alt="Profile"
-                    className="h-full w-full object-cover"
-                  />
-                ) : (
-                  <span className="text-sm font-semibold text-primary-600 dark:text-primary-300">
-                    {displayName.charAt(0).toUpperCase()}
-                  </span>
-                )}
-              </div>
-            </Link> */}
           </div>
         </header>
 
-        {/* ================= PAGE CONTENT ================= */}
+        {/* Page Content */}
         <main className="min-w-0 flex-1 p-4 sm:p-6">
           <Outlet />
         </main>
