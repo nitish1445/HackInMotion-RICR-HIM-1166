@@ -18,6 +18,7 @@ import {
 import { FaGraduationCap } from "react-icons/fa";
 import { toast } from "react-hot-toast";
 import { useAuth } from "../../context/AuthContext.jsx";
+import api from "../../config/Api.jsx";
 
 const navItems = [
   {
@@ -135,27 +136,33 @@ function AccountItems({ onNavigate }) {
 
 function Sidebar({ isOpen, onClose }) {
   const navigate = useNavigate();
-  const { logout } = useAuth();
+  // const { logout } = useAuth();
 
   const handleLogout = async () => {
     try {
-      /*
-        Later connect:
+      // Later connect:
 
-        await api.get("/auth/logout");
+      const response = await api.get("/auth/logout");
+      //claer usre from local storage
 
-      Backend clears HTTP-only JWT cookie.
-      */
+      localStorage.removeItem("EDUTECH USER");
+      // Backend clears HTTP-only JWT cookie.
 
-      logout();
+      // logout();
 
-      toast.success("Logged out successfully");
+      toast.success(response.data.message || "Logged out successfully");
 
       navigate("/login", {
         replace: true,
       });
     } catch (error) {
-      toast.error("Unable to logout");
+      console.error("Logout error:", error);
+      console.error("Status:", error.response?.status);
+      console.error("Data:", error.response?.data);
+      console.error("URL:", error.config?.url);
+      console.error("Base URL:", error.config?.baseURL);
+
+      toast.error(error.response?.data?.message || "Unable to logout");
     }
   };
 
