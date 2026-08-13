@@ -13,7 +13,7 @@ import DashboardPage from "./pages/DashboardPage";
 import DashboardOverview from "./pages/dashboard/Overview";
 import GoalsPage from "./pages/dashboard/GoalPage";
 import CreateGoalPage from "./pages/dashboard/CreateGoalPage";
-import GoalDetailPage from "./pages/dashboard/GoalDetailPage";
+// import GoalDetailPage from "./pages/dashboard/GoalDetailPage";
 import StudyPlanPage from "./pages/dashboard/StudyPlanPage";
 import AIAssistantPage from "./pages/dashboard/AIAssistant";
 import TestsPage from "./pages/dashboard/TestsPage";
@@ -82,7 +82,7 @@ const App = () => {
             <Route path="goals/new" element={<CreateGoalPage />} />
 
             {/* /dashboard/goals/:goalId */}
-            <Route path="goals/:goalId" element={<GoalDetailPage />} />
+            {/* <Route path="goals/:goalId" element={<GoalDetailPage />} /> */}
 
             {/* /dashboard/study-plan */}
             <Route path="study-plan" element={<StudyPlanPage />} />
