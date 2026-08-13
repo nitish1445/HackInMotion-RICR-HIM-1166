@@ -10,6 +10,10 @@ import cloudinary from "./src/config/cloudinary.js";
 import AuthRouter from "./src/routers/authRouter.js";
 import UserRouter from "./src/routers/userRouter.js";
 import connectDB from "./src/config/db.js";
+import DashboardRouter from "./src/routers/dashboardRouter.js";
+import GoalRouter from "./src/routers/goalRouter.js";
+import studyPlanRouter from "./src/routers/studyPlanRouter.js";
+import ProgressRouter from "./src/routers/progressRouter.js";
 
 const app = express();
 
@@ -29,6 +33,10 @@ app.use(morgan("dev")); // Log HTTP requests to the console
 
 app.use("/auth", AuthRouter);
 app.use("/user", UserRouter);
+app.use("/dashboard", DashboardRouter);
+app.use("/goals", GoalRouter);
+app.use("/study-plans", studyPlanRouter);
+app.use("/progress", ProgressRouter);
 
 //Health check route
 app.get("/", (req, res) => {

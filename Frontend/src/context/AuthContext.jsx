@@ -34,6 +34,17 @@ export const AuthProvider = (props) => {
     setRole(user?.role || "");
   }, [user]);
 
+  const logout = () => {
+    // Clear stored user
+    localStorage.removeItem("EDUTECH USER");
+    sessionStorage.removeItem("EDUTECH USER");
+
+    // Clear React state
+    setUser(null);
+    setIsLogin(false);
+    setRole("");
+  };
+
   const value = { user, setUser, isLogin, setIsLogin, role, setRole, logout };
 
   return (
