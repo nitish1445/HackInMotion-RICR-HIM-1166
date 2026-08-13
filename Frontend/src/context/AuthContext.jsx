@@ -21,13 +21,13 @@ export const AuthProvider = (props) => {
   const [isLogin, setIsLogin] = useState(!!user);
   const [role, setRole] = useState(user?.role || "");
 
-  const logout = () => {
-    setUser(null);
-    setIsLogin(false);
-    setRole("");
-    localStorage.removeItem("EDUTECH USER");
-    sessionStorage.removeItem("EDUTECH USER");
-  };
+  // const logout = () => {
+  //   setUser(null);
+  //   setIsLogin(false);
+  //   setRole("");
+  //   localStorage.removeItem("EDUTECH USER");
+  //   sessionStorage.removeItem("EDUTECH USER");
+  // };
 
   useEffect(() => {
     setIsLogin(!!user);
