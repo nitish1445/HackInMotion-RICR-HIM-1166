@@ -70,7 +70,7 @@ const Header = ({ theme, setTheme }) => {
 
             {isLogin && user ? (
               <Link
-                to="/profile"
+                to="/dashboard/profile"
                 className="flex items-center gap-3 rounded-lg px-2 h-10 hover:bg-primary-50 dark:hover:bg-white/5 transition-colors duration-200"
               >
                 <div className="min-w-0 text-right">
@@ -201,7 +201,7 @@ const Header = ({ theme, setTheme }) => {
 
           {isLogin && user ? (
             <Link
-              to="/profile"
+              to="/dashboard/profile"
               onClick={() => setOpen(false)}
               className="flex items-center gap-3 rounded-lg bg-primary-50 dark:bg-white/5 px-4 py-3 hover:bg-primary-100 dark:hover:bg-white/10 transition-colors"
             >
