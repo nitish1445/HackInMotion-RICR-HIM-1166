@@ -1,0 +1,1562 @@
+/*
+=========================================================
+QUESTION BANK
+
+Static diagnostic-assessment question bank, grouped by
+subject. This is the default "Question Bank" provider.
+
+Each raw entry only needs: question, options,
+correctAnswer, topic, difficulty. Stable per-question
+`id` and `subject` are attached automatically by
+assessmentQuestionProvider.js so ids never drift if this
+file is reordered/edited.
+
+difficulty: "easy" | "medium" | "hard"
+
+This structure is intentionally provider-agnostic: a
+future AI-generated question provider can produce
+objects in this exact shape and be plugged in alongside
+(or instead of) this bank without touching the
+controller/scoring logic. See assessmentQuestionProvider.js.
+=========================================================
+*/
+
+const rawQuestionBank = {
+  JavaScript: [
+    {
+      question: "Which keyword declares a block-scoped variable in JavaScript?",
+      options: ["var", "let", "function", "global"],
+      correctAnswer: 1,
+      topic: "Variables & Scope",
+      difficulty: "easy",
+    },
+    {
+      question: "What does typeof null return in JavaScript?",
+      options: ["\"null\"", "\"undefined\"", "\"object\"", "\"number\""],
+      correctAnswer: 2,
+      topic: "Variables & Scope",
+      difficulty: "medium",
+    },
+    {
+      question:
+        "In the temporal dead zone, accessing a `let` variable before its declaration line throws which type of error?",
+      options: ["SyntaxError", "TypeError", "ReferenceError", "No error, returns undefined"],
+      correctAnswer: 2,
+      topic: "Variables & Scope",
+      difficulty: "hard",
+    },
+    {
+      question: "How do you write an arrow function that takes no arguments and returns 5?",
+      options: ["() => 5", "function() => 5", "=> 5", "()=>{return}"],
+      correctAnswer: 0,
+      topic: "Functions",
+      difficulty: "easy",
+    },
+    {
+      question: "What value does a JavaScript function return if it has no explicit return statement?",
+      options: ["null", "0", "undefined", "NaN"],
+      correctAnswer: 2,
+      topic: "Functions",
+      difficulty: "easy",
+    },
+    {
+      question:
+        "What is the main difference between a regular function and an arrow function regarding `this`?",
+      options: [
+        "Arrow functions always run faster",
+        "Arrow functions do not have their own `this`; they inherit it from the enclosing scope",
+        "Regular functions cannot access `this`",
+        "There is no difference",
+      ],
+      correctAnswer: 1,
+      topic: "Functions",
+      difficulty: "medium",
+    },
+    {
+      question: "What is a closure in JavaScript?",
+      options: [
+        "A function that has no parameters",
+        "A function bundled together with references to its surrounding (lexical) scope",
+        "A way to close a browser tab",
+        "A loop that never terminates",
+      ],
+      correctAnswer: 1,
+      topic: "Closures",
+      difficulty: "medium",
+    },
+    {
+      question:
+        "Given `function counter(){ let c = 0; return () => ++c; }`, what does calling the returned function twice produce?",
+      options: ["0 then 0", "1 then 1", "1 then 2", "undefined then undefined"],
+      correctAnswer: 2,
+      topic: "Closures",
+      difficulty: "hard",
+    },
+    {
+      question: "Closures are commonly used to achieve which of the following?",
+      options: [
+        "Data privacy / encapsulation",
+        "Faster network requests",
+        "Automatic type conversion",
+        "CSS styling",
+      ],
+      correctAnswer: 0,
+      topic: "Closures",
+      difficulty: "easy",
+    },
+    {
+      question: "What does a JavaScript Promise represent?",
+      options: [
+        "A guaranteed synchronous value",
+        "The eventual completion (or failure) of an asynchronous operation",
+        "A type of array",
+        "A CSS animation",
+      ],
+      correctAnswer: 1,
+      topic: "Promises & Async",
+      difficulty: "medium",
+    },
+    {
+      question: "Which keyword pauses execution of an async function until a Promise settles?",
+      options: ["pause", "wait", "await", "hold"],
+      correctAnswer: 2,
+      topic: "Promises & Async",
+      difficulty: "easy",
+    },
+    {
+      question:
+        "What is the correct way to handle an error from an `await`-ed Promise inside an async function?",
+      options: [
+        "Wrap the await call in a try/catch block",
+        "Use an `if` statement after the call",
+        "Promises never throw errors",
+        "Add `.error()` after the async function",
+      ],
+      correctAnswer: 0,
+      topic: "Promises & Async",
+      difficulty: "medium",
+    },
+    {
+      question:
+        "`Promise.all([p1, p2])` rejects as soon as any of its input promises rejects. Which method instead waits for all promises to settle, successful or not?",
+      options: ["Promise.race", "Promise.any", "Promise.allSettled", "Promise.resolve"],
+      correctAnswer: 2,
+      topic: "Promises & Async",
+      difficulty: "hard",
+    },
+    {
+      question: "Which method is used to select a single element by its id in the DOM?",
+      options: [
+        "document.querySelectorAll",
+        "document.getElementById",
+        "document.getElementsByTag",
+        "document.selectById",
+      ],
+      correctAnswer: 1,
+      topic: "DOM",
+      difficulty: "easy",
+    },
+    {
+      question:
+        "What is the key difference between `addEventListener` and setting `element.onclick`?",
+      options: [
+        "There is no difference",
+        "addEventListener can attach multiple listeners to the same event on one element; onclick can only hold one",
+        "onclick works on more browsers",
+        "addEventListener only works with mouse events",
+      ],
+      correctAnswer: 1,
+      topic: "DOM",
+      difficulty: "medium",
+    },
+  ],
+
+  Java: [
+    {
+      question: "Which keyword is used to create a subclass in Java?",
+      options: ["implements", "extends", "inherits", "super"],
+      correctAnswer: 1,
+      topic: "OOP Basics",
+      difficulty: "easy",
+    },
+    {
+      question: "Which OOP principle allows a single method name to behave differently based on inputs?",
+      options: ["Encapsulation", "Abstraction", "Polymorphism", "Inheritance"],
+      correctAnswer: 2,
+      topic: "OOP Basics",
+      difficulty: "medium",
+    },
+    {
+      question:
+        "What is the difference between method overloading and method overriding in Java?",
+      options: [
+        "They are the same thing",
+        "Overloading happens at compile time with different parameter lists; overriding redefines a parent method at runtime with the same signature",
+        "Overriding can only happen in the same class",
+        "Overloading requires inheritance, overriding does not",
+      ],
+      correctAnswer: 1,
+      topic: "OOP Basics",
+      difficulty: "hard",
+    },
+    {
+      question: "Which of these is a primitive data type in Java?",
+      options: ["String", "Integer", "int", "ArrayList"],
+      correctAnswer: 2,
+      topic: "Data Types & Syntax",
+      difficulty: "easy",
+    },
+    {
+      question: "What is the default value of a boolean instance variable in Java?",
+      options: ["true", "false", "0", "null"],
+      correctAnswer: 1,
+      topic: "Data Types & Syntax",
+      difficulty: "medium",
+    },
+    {
+      question: "Which keyword makes a variable's value constant after initialization in Java?",
+      options: ["static", "const", "final", "immutable"],
+      correctAnswer: 2,
+      topic: "Data Types & Syntax",
+      difficulty: "easy",
+    },
+    {
+      question: "Which block always executes in a Java try/catch, whether or not an exception occurs?",
+      options: ["catch", "throw", "finally", "throws"],
+      correctAnswer: 2,
+      topic: "Exception Handling",
+      difficulty: "easy",
+    },
+    {
+      question: "What is the difference between a checked and an unchecked exception in Java?",
+      options: [
+        "Checked exceptions must be declared or caught at compile time; unchecked exceptions are not",
+        "Unchecked exceptions only occur in multithreaded code",
+        "Checked exceptions can never be caught",
+        "There is no real difference",
+      ],
+      correctAnswer: 0,
+      topic: "Exception Handling",
+      difficulty: "medium",
+    },
+    {
+      question:
+        "If a `finally` block contains a `return` statement, what happens to a `return` in the corresponding `try` block?",
+      options: [
+        "Both return statements execute",
+        "The try block's return value is discarded and the finally block's return wins",
+        "A compile error occurs",
+        "The try block's return always wins",
+      ],
+      correctAnswer: 1,
+      topic: "Exception Handling",
+      difficulty: "hard",
+    },
+    {
+      question: "Which Java interface represents a collection that does not allow duplicate elements?",
+      options: ["List", "Set", "Map", "Queue"],
+      correctAnswer: 1,
+      topic: "Collections",
+      difficulty: "easy",
+    },
+    {
+      question: "Which Java collection maintains key-value pairs?",
+      options: ["ArrayList", "HashSet", "HashMap", "LinkedList"],
+      correctAnswer: 2,
+      topic: "Collections",
+      difficulty: "easy",
+    },
+    {
+      question:
+        "What is the main practical difference between an ArrayList and a LinkedList in Java?",
+      options: [
+        "ArrayList offers faster random access; LinkedList offers faster insertion/removal at the ends",
+        "LinkedList cannot store objects",
+        "ArrayList is thread-safe by default and LinkedList is not",
+        "There is no difference in performance",
+      ],
+      correctAnswer: 0,
+      topic: "Collections",
+      difficulty: "medium",
+    },
+    {
+      question: "What does the `synchronized` keyword do in Java multithreading?",
+      options: [
+        "Deletes a thread",
+        "Restricts access to a method/block to one thread at a time to prevent race conditions",
+        "Speeds up thread execution",
+        "Creates a new thread automatically",
+      ],
+      correctAnswer: 1,
+      topic: "Multithreading",
+      difficulty: "medium",
+    },
+    {
+      question: "Which class is commonly extended (or interface implemented) to create a thread in Java?",
+      options: ["Thread class or Runnable interface", "Object class only", "Exception class", "Collection interface"],
+      correctAnswer: 0,
+      topic: "Multithreading",
+      difficulty: "easy",
+    },
+    {
+      question:
+        "What condition is required for a deadlock to occur between two Java threads holding locks?",
+      options: [
+        "Each thread holds a lock the other needs, and neither releases it",
+        "One thread runs faster than the other",
+        "Both threads use the same variable name",
+        "The JVM runs out of memory",
+      ],
+      correctAnswer: 0,
+      topic: "Multithreading",
+      difficulty: "hard",
+    },
+  ],
+
+  DSA: [
+    {
+      question: "What is the time complexity of accessing an element by index in an array?",
+      options: ["O(1)", "O(n)", "O(log n)", "O(n^2)"],
+      correctAnswer: 0,
+      topic: "Arrays",
+      difficulty: "easy",
+    },
+    {
+      question: "What is the worst-case time complexity of inserting an element at the beginning of an array?",
+      options: ["O(1)", "O(log n)", "O(n)", "O(n log n)"],
+      correctAnswer: 2,
+      topic: "Arrays",
+      difficulty: "medium",
+    },
+    {
+      question:
+        "Which approach efficiently finds two numbers in a sorted array that sum to a target value?",
+      options: [
+        "Brute-force nested loop only",
+        "Two-pointer technique from both ends",
+        "Sorting it again",
+        "Random search",
+      ],
+      correctAnswer: 1,
+      topic: "Arrays",
+      difficulty: "hard",
+    },
+    {
+      question: "In a singly linked list, each node stores data and:",
+      options: [
+        "A reference to the previous node only",
+        "A reference to the next node",
+        "An index number",
+        "A copy of the entire list",
+      ],
+      correctAnswer: 1,
+      topic: "Linked Lists",
+      difficulty: "easy",
+    },
+    {
+      question: "What is the time complexity of inserting a node at the head of a singly linked list?",
+      options: ["O(1)", "O(n)", "O(log n)", "O(n^2)"],
+      correctAnswer: 0,
+      topic: "Linked Lists",
+      difficulty: "medium",
+    },
+    {
+      question: "Which technique is commonly used to detect a cycle in a linked list?",
+      options: ["Binary search", "Floyd's slow and fast pointer technique", "Bubble sort", "Hashing the head node only"],
+      correctAnswer: 1,
+      topic: "Linked Lists",
+      difficulty: "hard",
+    },
+    {
+      question: "Which sorting algorithm repeatedly swaps adjacent elements if they are in the wrong order?",
+      options: ["Merge sort", "Bubble sort", "Quick sort", "Heap sort"],
+      correctAnswer: 1,
+      topic: "Sorting",
+      difficulty: "easy",
+    },
+    {
+      question: "What is the average-case time complexity of quicksort?",
+      options: ["O(n)", "O(n log n)", "O(n^2)", "O(log n)"],
+      correctAnswer: 1,
+      topic: "Sorting",
+      difficulty: "medium",
+    },
+    {
+      question: "Why does quicksort degrade to O(n^2) in the worst case?",
+      options: [
+        "It never degrades",
+        "When the chosen pivot repeatedly produces highly unbalanced partitions (e.g. already-sorted input with a poor pivot choice)",
+        "Because it uses extra memory",
+        "Because it is a stable sort",
+      ],
+      correctAnswer: 1,
+      topic: "Sorting",
+      difficulty: "hard",
+    },
+    {
+      question: "In a binary search tree, where are values smaller than a node's value stored?",
+      options: ["In the right subtree", "In the left subtree", "At the root only", "They are not allowed"],
+      correctAnswer: 1,
+      topic: "Trees",
+      difficulty: "easy",
+    },
+    {
+      question: "What is the time complexity of searching in a balanced binary search tree?",
+      options: ["O(1)", "O(n)", "O(log n)", "O(n log n)"],
+      correctAnswer: 2,
+      topic: "Trees",
+      difficulty: "medium",
+    },
+    {
+      question:
+        "Which tree traversal visits the left subtree, then the node, then the right subtree?",
+      options: ["Pre-order", "In-order", "Post-order", "Level-order"],
+      correctAnswer: 1,
+      topic: "Trees",
+      difficulty: "medium",
+    },
+    {
+      question: "What does Big-O notation describe?",
+      options: [
+        "The exact runtime of an algorithm in seconds",
+        "The upper bound growth rate of an algorithm's time or space as input size grows",
+        "The number of lines of code",
+        "The programming language used",
+      ],
+      correctAnswer: 1,
+      topic: "Time Complexity",
+      difficulty: "easy",
+    },
+    {
+      question: "An algorithm with time complexity O(2^n) is best described as:",
+      options: ["Constant time", "Linear time", "Exponential time", "Logarithmic time"],
+      correctAnswer: 2,
+      topic: "Time Complexity",
+      difficulty: "medium",
+    },
+    {
+      question:
+        "Between an algorithm with O(n log n) and one with O(n^2), which is generally more efficient for large n?",
+      options: ["O(n^2)", "O(n log n)", "They are always equal", "Depends only on programming language"],
+      correctAnswer: 1,
+      topic: "Time Complexity",
+      difficulty: "hard",
+    },
+  ],
+
+  SQL: [
+    {
+      question: "Which SQL keyword is used to retrieve data from a table?",
+      options: ["GET", "SELECT", "FETCH", "SHOW"],
+      correctAnswer: 1,
+      topic: "Basics",
+      difficulty: "easy",
+    },
+    {
+      question: "Which clause is used to filter rows before grouping in SQL?",
+      options: ["HAVING", "WHERE", "GROUP BY", "ORDER BY"],
+      correctAnswer: 1,
+      topic: "Basics",
+      difficulty: "medium",
+    },
+    {
+      question: "Which SQL statement removes rows from a table without deleting the table structure itself?",
+      options: ["DROP TABLE", "DELETE FROM", "REMOVE TABLE", "TRUNCATE DATABASE"],
+      correctAnswer: 1,
+      topic: "Basics",
+      difficulty: "easy",
+    },
+    {
+      question: "Which JOIN returns only the rows that have matching values in both tables?",
+      options: ["LEFT JOIN", "RIGHT JOIN", "INNER JOIN", "FULL OUTER JOIN"],
+      correctAnswer: 2,
+      topic: "Joins",
+      difficulty: "easy",
+    },
+    {
+      question:
+        "Which JOIN returns all rows from the left table, and matched rows from the right table (NULLs where there is no match)?",
+      options: ["INNER JOIN", "LEFT JOIN", "CROSS JOIN", "SELF JOIN"],
+      correctAnswer: 1,
+      topic: "Joins",
+      difficulty: "medium",
+    },
+    {
+      question: "A SELF JOIN is best described as:",
+      options: [
+        "Joining a table to itself, typically using aliases",
+        "A join that always fails",
+        "A join between two different databases",
+        "A join that requires no ON condition",
+      ],
+      correctAnswer: 0,
+      topic: "Joins",
+      difficulty: "hard",
+    },
+    {
+      question: "Which SQL function returns the number of rows matching a condition?",
+      options: ["SUM()", "COUNT()", "AVG()", "TOTAL()"],
+      correctAnswer: 1,
+      topic: "Aggregation",
+      difficulty: "easy",
+    },
+    {
+      question: "Which clause is used to filter groups after a GROUP BY, based on an aggregate condition?",
+      options: ["WHERE", "HAVING", "FILTER", "ON"],
+      correctAnswer: 1,
+      topic: "Aggregation",
+      difficulty: "medium",
+    },
+    {
+      question:
+        "Given `SELECT department, AVG(salary) FROM employees GROUP BY department HAVING AVG(salary) > 50000`, what does this query return?",
+      options: [
+        "All employees earning over 50000",
+        "Departments whose average salary exceeds 50000, along with that average",
+        "The single highest paid employee",
+        "An error, since HAVING cannot follow GROUP BY",
+      ],
+      correctAnswer: 1,
+      topic: "Aggregation",
+      difficulty: "hard",
+    },
+    {
+      question: "Which constraint ensures a column's value must be unique and not null, and identifies each row?",
+      options: ["UNIQUE", "PRIMARY KEY", "CHECK", "DEFAULT"],
+      correctAnswer: 1,
+      topic: "Constraints",
+      difficulty: "easy",
+    },
+    {
+      question: "What does a FOREIGN KEY constraint enforce?",
+      options: [
+        "That a column's value must reference an existing value in another (or the same) table",
+        "That a column can never be updated",
+        "That a table can have only one column",
+        "That values must be numeric",
+      ],
+      correctAnswer: 0,
+      topic: "Constraints",
+      difficulty: "medium",
+    },
+    {
+      question: "Which constraint prevents a column from storing an empty/missing value?",
+      options: ["NOT NULL", "UNIQUE", "DEFAULT", "INDEX"],
+      correctAnswer: 0,
+      topic: "Constraints",
+      difficulty: "easy",
+    },
+    {
+      question: "What is a subquery in SQL?",
+      options: [
+        "A query nested inside another query",
+        "A query that runs on a different server",
+        "A backup copy of a query",
+        "A query with no SELECT statement",
+      ],
+      correctAnswer: 0,
+      topic: "Subqueries",
+      difficulty: "easy",
+    },
+    {
+      question:
+        "In `SELECT name FROM employees WHERE salary > (SELECT AVG(salary) FROM employees)`, the subquery is used to:",
+      options: [
+        "Delete rows",
+        "Provide a dynamic comparison value (the average salary) for the outer query's filter",
+        "Create a new table",
+        "Join two databases",
+      ],
+      correctAnswer: 1,
+      topic: "Subqueries",
+      difficulty: "medium",
+    },
+    {
+      question:
+        "What is the key difference between a correlated subquery and a regular (non-correlated) subquery?",
+      options: [
+        "A correlated subquery references a column from the outer query and re-executes per outer row",
+        "Correlated subqueries can only be used in DELETE statements",
+        "There is no difference",
+        "Non-correlated subqueries cannot use WHERE",
+      ],
+      correctAnswer: 0,
+      topic: "Subqueries",
+      difficulty: "hard",
+    },
+  ],
+
+  DBMS: [
+    {
+      question: "What is the main goal of database normalization?",
+      options: [
+        "To make queries slower but safer",
+        "To reduce data redundancy and improve data integrity",
+        "To merge all tables into one",
+        "To encrypt the database",
+      ],
+      correctAnswer: 1,
+      topic: "Normalization",
+      difficulty: "easy",
+    },
+    {
+      question: "A table in First Normal Form (1NF) must have:",
+      options: [
+        "Composite keys only",
+        "Atomic (indivisible) column values, with no repeating groups",
+        "At least two foreign keys",
+        "No primary key",
+      ],
+      correctAnswer: 1,
+      topic: "Normalization",
+      difficulty: "medium",
+    },
+    {
+      question:
+        "A table is in Third Normal Form (3NF) if it is in 2NF and additionally has no:",
+      options: [
+        "Primary key",
+        "Transitive dependency of non-key attributes on the primary key",
+        "Foreign keys",
+        "Indexes",
+      ],
+      correctAnswer: 1,
+      topic: "Normalization",
+      difficulty: "hard",
+    },
+    {
+      question: "What is a primary key?",
+      options: [
+        "Any column in a table",
+        "A column (or set of columns) that uniquely identifies each row in a table",
+        "A key used only for encryption",
+        "A column that must contain duplicate values",
+      ],
+      correctAnswer: 1,
+      topic: "Keys",
+      difficulty: "easy",
+    },
+    {
+      question: "What is a composite key?",
+      options: [
+        "A key made up of two or more columns that together uniquely identify a row",
+        "A key that is always auto-incremented",
+        "A key with no data type",
+        "A key used only in NoSQL databases",
+      ],
+      correctAnswer: 0,
+      topic: "Keys",
+      difficulty: "medium",
+    },
+    {
+      question: "A candidate key that is not chosen as the primary key is called a(n):",
+      options: ["Foreign key", "Alternate key", "Super key", "Surrogate key"],
+      correctAnswer: 1,
+      topic: "Keys",
+      difficulty: "hard",
+    },
+    {
+      question: "In database transactions, what does the 'A' in the ACID acronym stand for?",
+      options: ["Availability", "Atomicity", "Accuracy", "Authentication"],
+      correctAnswer: 1,
+      topic: "Transactions",
+      difficulty: "easy",
+    },
+    {
+      question: "What does the 'Isolation' property in ACID transactions guarantee?",
+      options: [
+        "Transactions run in a completely separate database",
+        "Concurrently executing transactions do not interfere with each other's intermediate state",
+        "Data is encrypted during the transaction",
+        "Only one user can access the database at a time",
+      ],
+      correctAnswer: 1,
+      topic: "Transactions",
+      difficulty: "medium",
+    },
+    {
+      question:
+        "What problem occurs when one transaction reads data that another concurrent transaction has modified but not yet committed?",
+      options: ["Deadlock", "Dirty read", "Normalization", "Indexing overhead"],
+      correctAnswer: 1,
+      topic: "Transactions",
+      difficulty: "hard",
+    },
+    {
+      question: "What is the main benefit of adding an index to a database column?",
+      options: [
+        "It makes INSERT statements run faster with no tradeoffs",
+        "It speeds up read/lookup queries on that column",
+        "It automatically normalizes the table",
+        "It removes the need for a primary key",
+      ],
+      correctAnswer: 1,
+      topic: "Indexing",
+      difficulty: "easy",
+    },
+    {
+      question: "What is a common tradeoff of adding many indexes to a table?",
+      options: [
+        "No tradeoff, indexes are always free",
+        "Slower write operations (INSERT/UPDATE/DELETE) and extra storage use",
+        "Indexes make read queries slower",
+        "Indexes remove all data types",
+      ],
+      correctAnswer: 1,
+      topic: "Indexing",
+      difficulty: "medium",
+    },
+    {
+      question: "A B-Tree index is commonly favored in databases mainly because it:",
+      options: [
+        "Keeps data sorted and allows efficient range queries and lookups",
+        "Only supports exact-match lookups",
+        "Requires no additional storage",
+        "Cannot be used on primary keys",
+      ],
+      correctAnswer: 0,
+      topic: "Indexing",
+      difficulty: "hard",
+    },
+    {
+      question: "In an Entity-Relationship (ER) diagram, a rectangle typically represents:",
+      options: ["A relationship", "An attribute", "An entity", "A primary key only"],
+      correctAnswer: 2,
+      topic: "ER Model",
+      difficulty: "easy",
+    },
+    {
+      question: "In ER modeling, a diamond shape typically represents:",
+      options: ["An entity", "A relationship between entities", "An attribute", "A weak entity"],
+      correctAnswer: 1,
+      topic: "ER Model",
+      difficulty: "medium",
+    },
+    {
+      question:
+        "A 'weak entity' in an ER diagram is one that:",
+      options: [
+        "Has no attributes at all",
+        "Cannot be uniquely identified by its own attributes and depends on a related (owner) entity",
+        "Is always the primary table",
+        "Cannot participate in relationships",
+      ],
+      correctAnswer: 1,
+      topic: "ER Model",
+      difficulty: "hard",
+    },
+  ],
+
+  "Operating Systems": [
+    {
+      question: "What is a process in an operating system?",
+      options: [
+        "A file stored on disk",
+        "A program in execution, with its own memory and resources",
+        "A type of hardware device",
+        "A network connection",
+      ],
+      correctAnswer: 1,
+      topic: "Processes",
+      difficulty: "easy",
+    },
+    {
+      question: "What is the main difference between a process and a thread?",
+      options: [
+        "Threads exist only in mobile operating systems",
+        "A process has its own memory space; threads within the same process share that memory space",
+        "There is no difference",
+        "A process can only run one instruction",
+      ],
+      correctAnswer: 1,
+      topic: "Processes",
+      difficulty: "medium",
+    },
+    {
+      question: "Which state describes a process that is ready to run but waiting for CPU time?",
+      options: ["Running", "Blocked/Waiting", "Ready", "Terminated"],
+      correctAnswer: 2,
+      topic: "Processes",
+      difficulty: "medium",
+    },
+    {
+      question: "What is the goal of a CPU scheduling algorithm?",
+      options: [
+        "To decide which process runs on the CPU next",
+        "To allocate disk space",
+        "To manage network packets",
+        "To compile source code",
+      ],
+      correctAnswer: 0,
+      topic: "Scheduling",
+      difficulty: "easy",
+    },
+    {
+      question: "Which scheduling algorithm can cause 'starvation' of short-burst processes?",
+      options: ["Round Robin", "First-Come-First-Served (FCFS) with a long process ahead", "Priority scheduling without aging can cause starvation of low-priority processes", "SJF always avoids starvation"],
+      correctAnswer: 2,
+      topic: "Scheduling",
+      difficulty: "hard",
+    },
+    {
+      question: "Round Robin scheduling primarily relies on which concept?",
+      options: ["A fixed time quantum given to each process in turn", "Running the shortest job first always", "Running processes in random order", "Never preempting a process"],
+      correctAnswer: 0,
+      topic: "Scheduling",
+      difficulty: "medium",
+    },
+    {
+      question: "What is the purpose of virtual memory?",
+      options: [
+        "To physically expand RAM chips",
+        "To let a process use more memory than physically available by using disk space as an extension",
+        "To speed up the CPU clock",
+        "To store the operating system permanently",
+      ],
+      correctAnswer: 1,
+      topic: "Memory Management",
+      difficulty: "medium",
+    },
+    {
+      question: "What is 'paging' in operating systems?",
+      options: [
+        "Printing memory contents",
+        "Dividing memory into fixed-size blocks to manage allocation and avoid external fragmentation",
+        "A way to shut down the OS",
+        "A type of network protocol",
+      ],
+      correctAnswer: 1,
+      topic: "Memory Management",
+      difficulty: "medium",
+    },
+    {
+      question: "What is thrashing in the context of memory management?",
+      options: [
+        "A CPU overheating issue",
+        "A state where the system spends most of its time swapping pages in and out rather than executing processes",
+        "A type of malware",
+        "A disk formatting error",
+      ],
+      correctAnswer: 1,
+      topic: "Memory Management",
+      difficulty: "hard",
+    },
+    {
+      question: "Which of the following is one of the four necessary conditions for a deadlock?",
+      options: ["Preemption is always allowed", "Mutual exclusion", "Unlimited resources", "Single-threaded execution"],
+      correctAnswer: 1,
+      topic: "Deadlocks",
+      difficulty: "medium",
+    },
+    {
+      question: "What does 'circular wait' mean in the context of deadlocks?",
+      options: [
+        "A process waits for itself",
+        "A set of processes each waiting for a resource held by the next process in the chain, forming a cycle",
+        "A CPU scheduling policy",
+        "A memory allocation strategy",
+      ],
+      correctAnswer: 1,
+      topic: "Deadlocks",
+      difficulty: "hard",
+    },
+    {
+      question: "Which strategy avoids deadlock by ensuring the system never enters an unsafe state?",
+      options: ["Deadlock prevention by denying one of the four conditions, or the Banker's Algorithm for avoidance", "Ignoring the deadlock", "Restarting the OS", "Increasing CPU speed"],
+      correctAnswer: 0,
+      topic: "Deadlocks",
+      difficulty: "medium",
+    },
+    {
+      question: "What is a file system responsible for in an operating system?",
+      options: [
+        "Managing how data is stored, organized, and retrieved on storage devices",
+        "Rendering graphics",
+        "Managing CPU scheduling only",
+        "Compiling programs",
+      ],
+      correctAnswer: 0,
+      topic: "File Systems",
+      difficulty: "easy",
+    },
+    {
+      question: "What is an inode in Unix-like file systems?",
+      options: [
+        "A folder icon",
+        "A data structure storing metadata about a file (permissions, size, pointers to data blocks), excluding its name",
+        "A type of network socket",
+        "A CPU register",
+      ],
+      correctAnswer: 1,
+      topic: "File Systems",
+      difficulty: "hard",
+    },
+    {
+      question: "What does 'file fragmentation' refer to?",
+      options: [
+        "A file being split into non-contiguous blocks scattered across storage",
+        "Deleting a file permanently",
+        "Encrypting a file",
+        "Renaming multiple files at once",
+      ],
+      correctAnswer: 0,
+      topic: "File Systems",
+      difficulty: "medium",
+    },
+  ],
+
+  "Computer Networks": [
+    {
+      question: "How many layers does the OSI model have?",
+      options: ["4", "5", "7", "9"],
+      correctAnswer: 2,
+      topic: "OSI Model",
+      difficulty: "easy",
+    },
+    {
+      question: "Which OSI layer is responsible for routing packets between networks?",
+      options: ["Physical layer", "Data Link layer", "Network layer", "Session layer"],
+      correctAnswer: 2,
+      topic: "OSI Model",
+      difficulty: "medium",
+    },
+    {
+      question:
+        "Which OSI layer handles reliable end-to-end delivery, including things like TCP's segmentation and error recovery?",
+      options: ["Transport layer", "Presentation layer", "Application layer", "Physical layer"],
+      correctAnswer: 0,
+      topic: "OSI Model",
+      difficulty: "hard",
+    },
+    {
+      question: "What does TCP stand for?",
+      options: [
+        "Transfer Control Protocol",
+        "Transmission Control Protocol",
+        "Total Connection Protocol",
+        "Text Communication Protocol",
+      ],
+      correctAnswer: 1,
+      topic: "TCP/IP",
+      difficulty: "easy",
+    },
+    {
+      question: "What is the key difference between TCP and UDP?",
+      options: [
+        "TCP is connection-oriented and reliable; UDP is connectionless and does not guarantee delivery",
+        "UDP is always slower than TCP",
+        "TCP cannot be used for web traffic",
+        "There is no real difference",
+      ],
+      correctAnswer: 0,
+      topic: "TCP/IP",
+      difficulty: "medium",
+    },
+    {
+      question: "What is the purpose of the TCP three-way handshake?",
+      options: [
+        "To encrypt data before sending",
+        "To establish a reliable connection between client and server before data transfer (SYN, SYN-ACK, ACK)",
+        "To compress data",
+        "To assign an IP address",
+      ],
+      correctAnswer: 1,
+      topic: "TCP/IP",
+      difficulty: "hard",
+    },
+    {
+      question: "Which HTTP method is typically used to retrieve data without modifying server state?",
+      options: ["POST", "GET", "DELETE", "PUT"],
+      correctAnswer: 1,
+      topic: "HTTP",
+      difficulty: "easy",
+    },
+    {
+      question: "What does HTTP status code 404 mean?",
+      options: ["Server error", "Unauthorized", "Resource not found", "Request successful"],
+      correctAnswer: 2,
+      topic: "HTTP",
+      difficulty: "easy",
+    },
+    {
+      question:
+        "What is the main difference between HTTP and HTTPS?",
+      options: [
+        "HTTPS encrypts data in transit using TLS/SSL, while HTTP does not",
+        "HTTP is only for images",
+        "HTTPS cannot be used with GET requests",
+        "There is no difference",
+      ],
+      correctAnswer: 0,
+      topic: "HTTP",
+      difficulty: "medium",
+    },
+    {
+      question: "What is the primary function of DNS?",
+      options: [
+        "Translating human-readable domain names into IP addresses",
+        "Encrypting network traffic",
+        "Assigning MAC addresses",
+        "Compressing files for transfer",
+      ],
+      correctAnswer: 0,
+      topic: "DNS",
+      difficulty: "easy",
+    },
+    {
+      question: "What is a DNS 'A' record used for?",
+      options: [
+        "Mapping a domain name to an IPv4 address",
+        "Mapping a domain name to an email server",
+        "Storing text metadata only",
+        "Redirecting to another domain permanently",
+      ],
+      correctAnswer: 0,
+      topic: "DNS",
+      difficulty: "medium",
+    },
+    {
+      question: "What does DNS caching primarily improve?",
+      options: [
+        "Website visual design",
+        "Lookup speed, by avoiding repeated full DNS resolution for the same domain",
+        "Server storage capacity",
+        "Encryption strength",
+      ],
+      correctAnswer: 1,
+      topic: "DNS",
+      difficulty: "hard",
+    },
+    {
+      question: "What is the main job of a router in a network?",
+      options: [
+        "Forwarding data packets between different networks based on IP addresses",
+        "Storing web pages permanently",
+        "Rendering HTML",
+        "Assigning domain names",
+      ],
+      correctAnswer: 0,
+      topic: "Routing",
+      difficulty: "easy",
+    },
+    {
+      question: "What does a routing table store?",
+      options: [
+        "User passwords",
+        "Paths/next-hops used to determine how to forward packets toward destination networks",
+        "Website content",
+        "DNS cache entries only",
+      ],
+      correctAnswer: 1,
+      topic: "Routing",
+      difficulty: "medium",
+    },
+    {
+      question:
+        "What is the general goal of a shortest-path routing algorithm like Dijkstra's when applied to network routing?",
+      options: [
+        "To find the path with the lowest cost (e.g. fewest hops or lowest latency) between nodes",
+        "To always route traffic through the most congested link",
+        "To disable all but one router",
+        "To encrypt every packet",
+      ],
+      correctAnswer: 0,
+      topic: "Routing",
+      difficulty: "hard",
+    },
+  ],
+
+  "HTML/CSS": [
+    {
+      question: "Which HTML tag is used to create a hyperlink?",
+      options: ["<link>", "<a>", "<href>", "<url>"],
+      correctAnswer: 1,
+      topic: "HTML Basics",
+      difficulty: "easy",
+    },
+    {
+      question: "Which HTML element is used to embed an image?",
+      options: ["<image>", "<img>", "<src>", "<picture-tag>"],
+      correctAnswer: 1,
+      topic: "HTML Basics",
+      difficulty: "easy",
+    },
+    {
+      question:
+        "What is the difference between semantic elements like <article>/<nav> and a generic <div>?",
+      options: [
+        "Semantic elements describe their meaning/content role, improving accessibility and SEO; <div> carries no such meaning",
+        "There is no difference",
+        "<div> renders faster",
+        "Semantic elements cannot contain other elements",
+      ],
+      correctAnswer: 0,
+      topic: "HTML Basics",
+      difficulty: "medium",
+    },
+    {
+      question: "Which CSS selector targets an element with a specific id?",
+      options: [".class-name", "#id-name", "*element", "&id"],
+      correctAnswer: 1,
+      topic: "CSS Selectors",
+      difficulty: "easy",
+    },
+    {
+      question: "Which selector has higher specificity in CSS?",
+      options: ["A class selector (.example)", "An id selector (#example)", "An element selector (div)", "The universal selector (*)"],
+      correctAnswer: 1,
+      topic: "CSS Selectors",
+      difficulty: "medium",
+    },
+    {
+      question: "What does the CSS selector `div > p` target?",
+      options: [
+        "All <p> elements anywhere inside a <div>",
+        "Only <p> elements that are direct children of a <div>",
+        "All <div> elements inside a <p>",
+        "It is invalid CSS",
+      ],
+      correctAnswer: 1,
+      topic: "CSS Selectors",
+      difficulty: "hard",
+    },
+    {
+      question: "In the CSS box model, which is the innermost part of an element?",
+      options: ["Margin", "Border", "Padding", "Content"],
+      correctAnswer: 3,
+      topic: "Box Model",
+      difficulty: "easy",
+    },
+    {
+      question: "What does `box-sizing: border-box` change about width calculation?",
+      options: [
+        "Width now includes padding and border, instead of only the content area",
+        "It removes the border entirely",
+        "It disables margins",
+        "It has no effect on width",
+      ],
+      correctAnswer: 0,
+      topic: "Box Model",
+      difficulty: "medium",
+    },
+    {
+      question: "Which CSS property creates space between an element's border and its content?",
+      options: ["margin", "padding", "border-spacing", "gap"],
+      correctAnswer: 1,
+      topic: "Box Model",
+      difficulty: "easy",
+    },
+    {
+      question: "Which CSS property turns a container into a flex container?",
+      options: ["display: flex", "position: flex", "flex: container", "layout: flex"],
+      correctAnswer: 0,
+      topic: "Flexbox & Grid",
+      difficulty: "easy",
+    },
+    {
+      question: "In Flexbox, which property aligns items along the main axis?",
+      options: ["align-items", "justify-content", "flex-wrap", "align-self"],
+      correctAnswer: 1,
+      topic: "Flexbox & Grid",
+      difficulty: "medium",
+    },
+    {
+      question: "What is the main advantage of CSS Grid over Flexbox for layout?",
+      options: [
+        "Grid natively handles two-dimensional (rows and columns) layout, while Flexbox is primarily one-dimensional",
+        "Grid cannot be used with responsive design",
+        "Flexbox supports more browsers than Grid",
+        "There is no difference between them",
+      ],
+      correctAnswer: 0,
+      topic: "Flexbox & Grid",
+      difficulty: "hard",
+    },
+    {
+      question: "What is the purpose of a CSS media query?",
+      options: [
+        "To apply styles conditionally based on device characteristics like screen width",
+        "To load external fonts",
+        "To validate HTML",
+        "To compress images",
+      ],
+      correctAnswer: 0,
+      topic: "Responsive Design",
+      difficulty: "easy",
+    },
+    {
+      question: "Which meta tag is essential for responsive design on mobile devices?",
+      options: [
+        "<meta charset=\"utf-8\">",
+        "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">",
+        "<meta name=\"robots\">",
+        "<meta name=\"description\">",
+      ],
+      correctAnswer: 1,
+      topic: "Responsive Design",
+      difficulty: "medium",
+    },
+    {
+      question: "What is the 'mobile-first' approach to responsive CSS?",
+      options: [
+        "Writing base styles for small screens first, then adding complexity for larger screens via min-width media queries",
+        "Only supporting mobile devices",
+        "Writing desktop styles first and disabling them on mobile",
+        "Using JavaScript to detect device type only",
+      ],
+      correctAnswer: 0,
+      topic: "Responsive Design",
+      difficulty: "hard",
+    },
+  ],
+
+  React: [
+    {
+      question: "What is JSX in React?",
+      options: [
+        "A separate programming language",
+        "A syntax extension that lets you write HTML-like code inside JavaScript",
+        "A CSS framework",
+        "A database query language",
+      ],
+      correctAnswer: 1,
+      topic: "Components & JSX",
+      difficulty: "easy",
+    },
+    {
+      question: "In React, what must a component's render output (JSX) have at the top level?",
+      options: [
+        "Exactly one root element (or a Fragment)",
+        "At least two elements",
+        "No elements at all",
+        "A <div> named 'root'",
+      ],
+      correctAnswer: 0,
+      topic: "Components & JSX",
+      difficulty: "medium",
+    },
+    {
+      question:
+        "What is a React Fragment (<>...</>) used for?",
+      options: [
+        "Grouping multiple children without adding an extra DOM node",
+        "Fetching data from an API",
+        "Styling components",
+        "Managing global state",
+      ],
+      correctAnswer: 0,
+      topic: "Components & JSX",
+      difficulty: "medium",
+    },
+    {
+      question: "What are props in React?",
+      options: [
+        "Internal component state that changes over time",
+        "Read-only data passed from a parent component to a child component",
+        "CSS class names",
+        "Event handlers only",
+      ],
+      correctAnswer: 1,
+      topic: "Props & State",
+      difficulty: "easy",
+    },
+    {
+      question: "What is the correct way to update state in a functional component using useState?",
+      options: [
+        "Directly mutate the state variable",
+        "Call the setter function returned by useState with the new value",
+        "Reassign the variable with `=`",
+        "State cannot be updated in functional components",
+      ],
+      correctAnswer: 1,
+      topic: "Props & State",
+      difficulty: "easy",
+    },
+    {
+      question:
+        "Why does React recommend against directly mutating state (e.g. `state.value = 5`)?",
+      options: [
+        "React relies on detecting new references to know a re-render is needed; direct mutation can be missed",
+        "It causes a syntax error",
+        "It is actually the recommended approach",
+        "Mutation is faster and preferred",
+      ],
+      correctAnswer: 0,
+      topic: "Props & State",
+      difficulty: "hard",
+    },
+    {
+      question: "Which hook lets a functional component hold and update local state?",
+      options: ["useEffect", "useState", "useRef", "useMemo"],
+      correctAnswer: 1,
+      topic: "Hooks",
+      difficulty: "easy",
+    },
+    {
+      question: "Which hook is used to run side effects (like data fetching) after render?",
+      options: ["useState", "useContext", "useEffect", "useReducer"],
+      correctAnswer: 2,
+      topic: "Hooks",
+      difficulty: "medium",
+    },
+    {
+      question:
+        "What does an empty dependency array `[]` passed to useEffect mean?",
+      options: [
+        "The effect runs on every render",
+        "The effect runs only once, after the initial render",
+        "The effect never runs",
+        "It causes an infinite loop always",
+      ],
+      correctAnswer: 1,
+      topic: "Hooks",
+      difficulty: "medium",
+    },
+    {
+      question:
+        "What is a key rule of hooks regarding where they can be called?",
+      options: [
+        "Hooks can be called inside loops or conditionals freely",
+        "Hooks must be called at the top level of a component/custom hook, not inside loops, conditions, or nested functions",
+        "Hooks can only be used in class components",
+        "There are no rules for hooks",
+      ],
+      correctAnswer: 1,
+      topic: "Hooks",
+      difficulty: "hard",
+    },
+    {
+      question: "In a class component, which lifecycle method runs once right after the component is first added to the DOM?",
+      options: ["componentWillUnmount", "componentDidMount", "shouldComponentUpdate", "render"],
+      correctAnswer: 1,
+      topic: "Lifecycle",
+      difficulty: "medium",
+    },
+    {
+      question: "Which lifecycle-equivalent behavior does `useEffect` with a cleanup function returned from it mimic?",
+      options: [
+        "componentDidMount only",
+        "componentWillUnmount (cleanup) combined with componentDidMount/componentDidUpdate",
+        "render()",
+        "constructor()",
+      ],
+      correctAnswer: 1,
+      topic: "Lifecycle",
+      difficulty: "hard",
+    },
+    {
+      question: "What triggers a React functional component to re-render?",
+      options: [
+        "Only page reloads",
+        "A change in its state or the props passed to it",
+        "Scrolling the page",
+        "Nothing, functional components never re-render",
+      ],
+      correctAnswer: 1,
+      topic: "Rendering",
+      difficulty: "easy",
+    },
+    {
+      question: "What is the purpose of the `key` prop when rendering a list of elements?",
+      options: [
+        "It styles the list items",
+        "It helps React identify which items changed, were added, or removed for efficient re-rendering",
+        "It sets the list's CSS class",
+        "It is required only for arrays longer than 10 items",
+      ],
+      correctAnswer: 1,
+      topic: "Rendering",
+      difficulty: "medium",
+    },
+    {
+      question: "What does React's Virtual DOM primarily help optimize?",
+      options: [
+        "Network request speed",
+        "Minimizing costly direct manipulations of the real DOM by diffing and batching updates",
+        "Database query performance",
+        "CSS parsing",
+      ],
+      correctAnswer: 1,
+      topic: "Rendering",
+      difficulty: "medium",
+    },
+  ],
+
+  "Node.js": [
+    {
+      question: "What is Node.js primarily used for?",
+      options: [
+        "Running JavaScript on the server, outside the browser",
+        "Styling web pages",
+        "A database management system",
+        "A CSS preprocessor",
+      ],
+      correctAnswer: 0,
+      topic: "Modules",
+      difficulty: "easy",
+    },
+    {
+      question: "Which keyword/function is used to import a module in CommonJS (traditional Node.js)?",
+      options: ["import", "include", "require", "using"],
+      correctAnswer: 2,
+      topic: "Modules",
+      difficulty: "easy",
+    },
+    {
+      question:
+        "What is the key difference between CommonJS (`require`) and ES Modules (`import`) in Node.js?",
+      options: [
+        "CommonJS loads modules synchronously; ES Modules support static analysis and are loaded per the ES spec, often needing \"type\": \"module\" or .mjs",
+        "They are exactly identical in every way",
+        "ES Modules cannot be used in Node.js at all",
+        "CommonJS is only for browsers",
+      ],
+      correctAnswer: 0,
+      topic: "Modules",
+      difficulty: "hard",
+    },
+    {
+      question: "What is the Node.js event loop primarily responsible for?",
+      options: [
+        "Compiling JavaScript to machine code",
+        "Handling asynchronous callbacks and I/O operations without blocking the single main thread",
+        "Rendering HTML in the browser",
+        "Managing CSS animations",
+      ],
+      correctAnswer: 1,
+      topic: "Event Loop",
+      difficulty: "medium",
+    },
+    {
+      question: "Is Node.js single-threaded or multi-threaded for executing JavaScript code?",
+      options: [
+        "Always multi-threaded for every operation",
+        "JavaScript execution runs on a single main thread, while I/O can be offloaded (e.g. via libuv's thread pool)",
+        "It uses a new thread for every function call",
+        "It has no threads at all",
+      ],
+      correctAnswer: 1,
+      topic: "Event Loop",
+      difficulty: "hard",
+    },
+    {
+      question: "What does `setTimeout(fn, 0)` do in relation to the event loop?",
+      options: [
+        "Runs fn immediately, synchronously, before anything else",
+        "Schedules fn to run after the current synchronous code finishes, via the event loop's timer phase",
+        "Cancels fn from running",
+        "Throws an error",
+      ],
+      correctAnswer: 1,
+      topic: "Event Loop",
+      difficulty: "medium",
+    },
+    {
+      question: "What is the purpose of the `package.json` file in a Node.js project?",
+      options: [
+        "It stores compiled binary code",
+        "It describes the project (name, version, scripts, dependencies) and configures npm",
+        "It is a database file",
+        "It replaces the need for JavaScript files",
+      ],
+      correctAnswer: 1,
+      topic: "npm & package.json",
+      difficulty: "easy",
+    },
+    {
+      question: "What command installs all dependencies listed in package.json?",
+      options: ["npm build", "npm install", "npm run", "npm start"],
+      correctAnswer: 1,
+      topic: "npm & package.json",
+      difficulty: "easy",
+    },
+    {
+      question:
+        "What is the difference between `dependencies` and `devDependencies` in package.json?",
+      options: [
+        "There is no difference",
+        "`dependencies` are needed at runtime in production; `devDependencies` are only needed during development/build",
+        "`devDependencies` are installed globally only",
+        "`dependencies` cannot include third-party packages",
+      ],
+      correctAnswer: 1,
+      topic: "npm & package.json",
+      difficulty: "medium",
+    },
+    {
+      question: "In Express.js, what is 'middleware'?",
+      options: [
+        "A database driver",
+        "A function with access to the request, response, and next() that can run code, modify req/res, or end the cycle",
+        "A CSS framework",
+        "The main HTML template engine",
+      ],
+      correctAnswer: 1,
+      topic: "Express Basics",
+      difficulty: "medium",
+    },
+    {
+      question: "Which Express method defines a route that handles GET requests to '/users'?",
+      options: [
+        "app.route('/users')",
+        "app.get('/users', handler)",
+        "app.fetch('/users', handler)",
+        "app.request('/users', handler)",
+      ],
+      correctAnswer: 1,
+      topic: "Express Basics",
+      difficulty: "easy",
+    },
+    {
+      question: "What does calling `next()` inside an Express middleware function do?",
+      options: [
+        "Ends the request immediately with a 200 response",
+        "Passes control to the next middleware/route handler in the chain",
+        "Restarts the server",
+        "Deletes the request object",
+      ],
+      correctAnswer: 1,
+      topic: "Express Basics",
+      difficulty: "medium",
+    },
+    {
+      question: "Why is asynchronous, non-blocking I/O central to Node.js's design?",
+      options: [
+        "It allows a single thread to handle many concurrent I/O-bound operations (like file/network access) efficiently without waiting on each one",
+        "It makes CPU-heavy computations faster",
+        "It removes the need for callbacks entirely",
+        "It is only relevant for CSS processing",
+      ],
+      correctAnswer: 0,
+      topic: "Async I/O",
+      difficulty: "medium",
+    },
+    {
+      question: "What is 'callback hell' in Node.js code?",
+      options: [
+        "A syntax error",
+        "Deeply nested callbacks that make asynchronous code hard to read and maintain, often improved with Promises/async-await",
+        "A type of memory leak",
+        "A network timeout",
+      ],
+      correctAnswer: 1,
+      topic: "Async I/O",
+      difficulty: "easy",
+    },
+    {
+      question:
+        "What is the benefit of using `fs.promises.readFile` (or util.promisify) over the callback-based `fs.readFile` in modern Node.js code?",
+      options: [
+        "It reads files faster at the disk level",
+        "It allows the operation to be used with async/await for cleaner, more readable asynchronous code",
+        "It reads files synchronously",
+        "It removes the need for error handling",
+      ],
+      correctAnswer: 1,
+      topic: "Async I/O",
+      difficulty: "hard",
+    },
+  ],
+};
+
+export default rawQuestionBank;

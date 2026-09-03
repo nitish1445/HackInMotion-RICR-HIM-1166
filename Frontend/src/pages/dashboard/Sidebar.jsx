@@ -14,6 +14,7 @@ import {
   FiLogOut,
   FiBookOpen,
   FiPlus,
+  FiCheckSquare,
 } from "react-icons/fi";
 import { FaGraduationCap } from "react-icons/fa";
 import { toast } from "react-hot-toast";
@@ -35,6 +36,11 @@ const navItems = [
     label: "Study Plan",
     icon: FiCalendar,
     path: "/dashboard/study-plan",
+  },
+  {
+    label: "Knowledge Assessment",
+    icon: FiCheckSquare,
+    path: "/dashboard/assessment",
   },
   {
     label: "AI Assistant",

@@ -12,6 +12,7 @@
     "dev": "nodemon index.js"
   },
   "dependencies": {
+    "@google/genai": "^2.21.0",
     "bcrypt": "^6.0.0",
     "cloudinary": "^2.10.0",
     "cookie-parser": "^1.4.7",
@@ -23,7 +24,7 @@
     "morgan": "^1.11.0",
     "multer": "^2.2.0",
     "nodemailer": "^9.0.5",
-    "openai": "^7.4.0"
+    "openai": "^7.9.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.14"

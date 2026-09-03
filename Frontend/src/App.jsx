@@ -16,6 +16,7 @@ import CreateGoalPage from "./pages/dashboard/CreateGoalPage";
 // import GoalDetailPage from "./pages/dashboard/GoalDetailPage";
 import StudyPlanPage from "./pages/dashboard/StudyPlanPage";
 import AIAssistantPage from "./pages/dashboard/AIAssistant";
+import KnowledgeAssessment from "./pages/dashboard/KnowledgeAssessment";
 import TestsPage from "./pages/dashboard/TestsPage";
 import TestPage from "./pages/dashboard/TestPage";
 import ProgressPage from "./pages/dashboard/ProgressPage";
@@ -88,6 +89,9 @@ const App = () => {
 
             {/* /dashboard/ai-assistant */}
             <Route path="ai-assistant" element={<AIAssistantPage />} />
+
+            {/* /dashboard/assessment */}
+            <Route path="assessment" element={<KnowledgeAssessment />} />
 
             {/* /dashboard/tests */}
             <Route path="tests" element={<TestsPage />} />
