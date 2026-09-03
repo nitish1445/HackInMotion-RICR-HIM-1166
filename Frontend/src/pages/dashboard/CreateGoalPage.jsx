@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import {
   FaArrowLeft,
   FaArrowRight,
@@ -257,7 +257,10 @@ const CreateGoalPage = () => {
 
           <div>
             <label className="mb-1.5 block text-sm font-medium text-ink-light dark:text-ink-dark">
-              Current knowledge
+              Current knowledge{" "}
+              <span className="font-normal text-muted-light dark:text-muted-dark">
+                (self-selected)
+              </span>
             </label>
 
             <div className="relative">
@@ -281,6 +284,18 @@ const CreateGoalPage = () => {
                 <option value="Advanced">Advanced</option>
               </select>
             </div>
+
+            <p className="mt-1.5 text-[11px] text-muted-light dark:text-muted-dark">
+              This is just your own estimate. For an objective, quiz-verified
+              level, take the{" "}
+              <Link
+                to="/dashboard/assessment"
+                className="text-primary-500 hover:underline"
+              >
+                Knowledge Assessment
+              </Link>
+              .
+            </p>
           </div>
 
           {/* HOURS */}

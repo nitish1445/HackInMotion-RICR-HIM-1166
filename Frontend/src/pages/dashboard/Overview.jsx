@@ -25,6 +25,7 @@ import {
 } from "react-icons/fa";
 
 import { useAuth } from "../../context/AuthContext.jsx";
+import AssessmentStatusWidget from "./AssessmentStatusWidget.jsx";
 
 const API_URL =
   import.meta.env.VITE_API_URL ||
@@ -895,6 +896,12 @@ const DashboardOverview = () => {
           description="Get help with any topic"
         />
       </section>
+
+      {/* =====================================================
+          KNOWLEDGE ASSESSMENT STATUS
+      ===================================================== */}
+
+      <AssessmentStatusWidget />
     </div>
   );
 };
