@@ -1,9 +1,19 @@
 import React, { useState } from "react";
 import {
   FaArrowUp,
+  FaExclamationTriangle,
   FaRobot,
+  FaSpinner,
   FaUser,
 } from "react-icons/fa";
+
+import api from "../../config/Api.jsx";
+
+/*
+  Only the last N turns are sent as history, to keep the
+  request payload reasonably small.
+*/
+const MAX_HISTORY_TURNS = 10;
 
 const AIAssistantPage = () => {
   const [message, setMessage] = useState("");
@@ -14,46 +24,73 @@ const AIAssistantPage = () => {
       role: "ai",
       text: "Hi! I'm your EduTech learning assistant. Ask me anything about what you're currently studying.",
     },
-    {
-      id: 2,
-      role: "user",
-      text: "Can you explain JavaScript closures simply?",
-    },
-    {
-      id: 3,
-      role: "ai",
-      text: "Think of a closure as a function that remembers variables from the place where it was created, even after that outer function has finished running.",
-    },
   ]);
 
-  const handleSubmit = (e) => {
+  const [sending, setSending] = useState(false);
+
+  const [error, setError] = useState("");
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!message.trim()) return;
+    const trimmed = message.trim();
+
+    if (!trimmed || sending) return;
+
+    setError("");
+
+    const userMessage = {
+      id: Date.now(),
+      role: "user",
+      text: trimmed,
+    };
 
     /*
-      Later:
-
-      const res = await api.post("/user/ai-chat", {
-        message,
-      });
+      Build the conversation history to send for context,
+      from the messages that exist right now (before adding
+      the new user message), mapped to {role, content}.
     */
+    const conversation = messages
+      .filter((item) => item.role === "user" || item.role === "ai")
+      .slice(-MAX_HISTORY_TURNS)
+      .map((item) => ({
+        role: item.role === "ai" ? "assistant" : "user",
+        content: item.text,
+      }));
 
-    setMessages((prev) => [
-      ...prev,
-      {
-        id: Date.now(),
-        role: "user",
-        text: message,
-      },
-      {
-        id: Date.now() + 1,
-        role: "ai",
-        text: "I'm using your current learning context to prepare a personalized explanation. Connect the AI API here to receive the real response.",
-      },
-    ]);
-
+    setMessages((prev) => [...prev, userMessage]);
     setMessage("");
+    setSending(true);
+
+    try {
+      const response = await api.post("/api/ai/chat", {
+        message: trimmed,
+        conversation,
+      });
+
+      const reply =
+        response.data?.message ||
+        "I couldn't generate a response for that. Please try again.";
+
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: Date.now() + 1,
+          role: "ai",
+          text: reply,
+        },
+      ]);
+    } catch (err) {
+      console.error("AI chat error:", err);
+
+      const friendlyMessage =
+        err?.response?.data?.message ||
+        "Something went wrong reaching the AI assistant. Please try again.";
+
+      setError(friendlyMessage);
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -128,7 +165,28 @@ const AIAssistantPage = () => {
             </div>
           ))}
 
+          {sending && (
+            <div className="flex justify-start gap-3">
+              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary-50 text-primary-500 dark:bg-primary-900/20">
+                <FaRobot size={12} />
+              </div>
+
+              <div className="flex items-center gap-2 rounded-xl bg-primary-50 px-4 py-3 text-sm text-muted-light dark:bg-white/5 dark:text-muted-dark">
+                <FaSpinner size={11} className="animate-spin" />
+                Thinking...
+              </div>
+            </div>
+          )}
+
         </div>
+
+        {/* Error */}
+        {error && (
+          <div className="mx-5 mb-3 flex items-start gap-2 rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-xs text-red-600 dark:border-red-900/30 dark:bg-red-900/10 dark:text-red-400">
+            <FaExclamationTriangle size={11} className="mt-0.5 shrink-0" />
+            {error}
+          </div>
+        )}
 
         {/* Input */}
         <form
@@ -141,14 +199,21 @@ const AIAssistantPage = () => {
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               placeholder="Ask something you're learning..."
-              className="min-w-0 flex-1 bg-transparent px-3 py-2.5 text-sm text-ink-light outline-none placeholder:text-muted-light/60 dark:text-ink-dark dark:placeholder:text-muted-dark/60"
+              disabled={sending}
+              maxLength={2000}
+              className="min-w-0 flex-1 bg-transparent px-3 py-2.5 text-sm text-ink-light outline-none placeholder:text-muted-light/60 disabled:opacity-60 dark:text-ink-dark dark:placeholder:text-muted-dark/60"
             />
 
             <button
               type="submit"
-              className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary-500 text-white hover:bg-primary-600"
+              disabled={sending || !message.trim()}
+              className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary-500 text-white hover:bg-primary-600 disabled:cursor-not-allowed disabled:opacity-40"
             >
-              <FaArrowUp size={11} />
+              {sending ? (
+                <FaSpinner size={11} className="animate-spin" />
+              ) : (
+                <FaArrowUp size={11} />
+              )}
             </button>
 
           </div>
