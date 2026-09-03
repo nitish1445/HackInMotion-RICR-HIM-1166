@@ -10,6 +10,7 @@ import morgan from "morgan";
 import cloudinary from "./src/config/cloudinary.js";
 
 import AuthRouter from "./src/routers/authRouter.js";
+import UserRouter from "./src/routers/userRouter.js";
 import connectDB from "./src/config/db.js";
 import DashboardRouter from "./src/routers/dashboardRouter.js";
 import GoalRouter from "./src/routers/goalRouter.js";
@@ -78,6 +79,7 @@ app.use(morgan("dev"));
 
 app.use("/auth", AuthRouter);
 
+app.use("/user", UserRouter);
 app.use("/dashboard", DashboardRouter);
 
 app.use("/goals", GoalRouter);

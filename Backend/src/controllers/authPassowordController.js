@@ -164,3 +164,46 @@ export const UserForgetPassword = async (req, res, next) => {
     next(error);
   }
 };
+
+export const UserChangePassword = async (req, res, next) => {
+  try {
+    const { currentPassword, newPassword } = req.body;
+
+    const currentUser = req.user;
+
+    if (!currentPassword || !newPassword) {
+      const error = new Error("All fields are required");
+      error.statusCode = 400;
+      return next(error);
+    }
+
+    // Check current password
+    const isMatch = await bcrypt.compare(currentPassword, currentUser.password);
+
+    if (!isMatch) {
+      const error = new Error("Current password is incorrect");
+      error.statusCode = 401;
+      return next(error);
+    }
+
+    if (newPassword.length < 6) {
+      const error = new Error("New password must be at least 6 characters");
+      error.statusCode = 400;
+      return next(error);
+    }
+
+    // Hash new password
+    const salt = await bcrypt.genSalt(10);
+    const hashPassword = await bcrypt.hash(newPassword, salt);
+
+    // Update password
+    currentUser.password = hashPassword;
+    await currentUser.save();
+
+    res.status(200).json({
+      message: "Password changed successfully.",
+    });
+  } catch (error) {
+    next(error);
+  }
+};
