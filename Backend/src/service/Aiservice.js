@@ -7,8 +7,14 @@ import { GoogleGenAI } from "@google/genai";
 const PRIMARY_MODEL =
   process.env.GEMINI_MODEL || "gemini-3.7-flash";
 
+const configuredFallbackModel =
+  process.env.GEMINI_FALLBACK_MODEL;
+
 const FALLBACK_MODEL =
-  process.env.GEMINI_FALLBACK_MODEL || "gemini-2.5-flash";
+  configuredFallbackModel &&
+  configuredFallbackModel !== PRIMARY_MODEL
+    ? configuredFallbackModel
+    : "gemini-2.5-flash";
 
 const MAX_HISTORY_MESSAGES = 10;
 

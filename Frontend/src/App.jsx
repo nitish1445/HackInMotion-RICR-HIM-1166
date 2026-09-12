@@ -20,6 +20,7 @@ import KnowledgeAssessment from "./pages/dashboard/KnowledgeAssessment";
 import TestsPage from "./pages/dashboard/TestsPage";
 import TestPage from "./pages/dashboard/TestPage";
 import ProgressPage from "./pages/dashboard/ProgressPage";
+import ExplainPractice from "./pages/dashboard/ExplainPractice";
 import AchievementsPage from "./pages/dashboard/AchivementPage";
 import ProfilePage from "./pages/dashboard/ProfilePage";
 
@@ -101,6 +102,9 @@ const App = () => {
 
             {/* /dashboard/progress */}
             <Route path="progress" element={<ProgressPage />} />
+
+            {/* /dashboard/explain */}
+            <Route path="explain" element={<ExplainPractice />} />
 
             {/* /dashboard/achievements */}
             <Route path="achievements" element={<AchievementsPage />} />
