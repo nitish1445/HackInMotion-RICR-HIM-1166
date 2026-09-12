@@ -1,5 +1,6 @@
 import StudyPlan from "../models/studyPlanModel.js";
 import Goal from "../models/goalModel.js";
+import { generateAdaptiveStudyPlan } from "../service/adaptiveStudyPlanService.js";
 
 /*
 =========================================================
@@ -168,6 +169,101 @@ const generateSessions = (
 
 /*
 =========================================================
+BUILD PLAN FOR GOAL
+
+Single shared entry point for generating a plan's days —
+used by createStudyPlan, the auto-create paths in
+getStudyPlan/getMyStudyPlan, and regenerateStudyPlan, so
+the adaptive logic lives in exactly one place instead of
+four copies.
+
+Retrieves the user's real performance data server-side
+(via generateAdaptiveStudyPlan -> performanceService) —
+never trusts anything the client sent. Falls back to the
+original fixed-template generator (generateSessions) for
+subjects outside the known question-bank taxonomy, where
+no real topic list or performance data can exist.
+=========================================================
+*/
+
+const buildPlanForGoal = async (
+  goal,
+  userId,
+) => {
+  const totalDays = calculateDays(
+    goal.targetDate,
+  );
+
+  const daysToGenerate = Math.min(
+    totalDays,
+    90,
+  );
+
+  const dailyMinutes = Math.max(
+    30,
+    Math.round(Number(goal.hoursPerDay) * 60),
+  );
+
+  const topicsPerDay = Math.max(
+    1,
+    Math.ceil(
+      goal.totalTopics / daysToGenerate,
+    ),
+  );
+
+  const buildLegacyDays = () => {
+    const days = [];
+
+    for (
+      let dayIndex = 0;
+      dayIndex < daysToGenerate;
+      dayIndex++
+    ) {
+      let legacyDayName;
+
+      if (dayIndex === 0) {
+        legacyDayName = "Today";
+      } else if (dayIndex === 1) {
+        legacyDayName = "Tomorrow";
+      } else {
+        legacyDayName = `Day ${dayIndex + 1}`;
+      }
+
+      days.push({
+        day: legacyDayName,
+        date: createDate(dayIndex),
+        sessions: generateSessions(
+          goal,
+          dayIndex,
+          topicsPerDay,
+        ),
+      });
+    }
+
+    return days;
+  };
+
+  const result = await generateAdaptiveStudyPlan({
+    userId,
+    subject: goal.subject,
+    durationDays: daysToGenerate,
+    dailyMinutes,
+    buildLegacyDays,
+  });
+
+  return {
+    description: result.description,
+    days: result.days,
+    adaptive: result.adaptive,
+    weakTopics: result.weakTopics,
+    averageTopics: result.averageTopics,
+    strongTopics: result.strongTopics,
+    topicPriorities: result.topicPriorities,
+  };
+};
+
+/*
+=========================================================
 CREATE PLAN
 =========================================================
 */
@@ -221,63 +317,10 @@ export const createStudyPlan =
         });
       }
 
-      const totalDays =
-        calculateDays(
-          goal.targetDate,
-        );
-
-      const daysToGenerate =
-        Math.min(
-          totalDays,
-          90,
-        );
-
-      const topicsPerDay =
-        Math.max(
-          1,
-          Math.ceil(
-            goal.totalTopics /
-              daysToGenerate,
-          ),
-        );
-
-      const days = [];
-
-      for (
-        let dayIndex = 0;
-        dayIndex < daysToGenerate;
-        dayIndex++
-      ) {
-        let dayName;
-
-        if (dayIndex === 0) {
-          dayName = "Today";
-        } else if (
-          dayIndex === 1
-        ) {
-          dayName = "Tomorrow";
-        } else {
-          dayName = `Day ${
-            dayIndex + 1
-          }`;
-        }
-
-        days.push({
-          day: dayName,
-
-          date:
-            createDate(
-              dayIndex,
-            ),
-
-          sessions:
-            generateSessions(
-              goal,
-              dayIndex,
-              topicsPerDay,
-            ),
-        });
-      }
+      const plan = await buildPlanForGoal(
+        goal,
+        userId,
+      );
 
       const studyPlan =
         await StudyPlan.create({
@@ -285,10 +328,19 @@ export const createStudyPlan =
 
           goal: goal._id,
 
-          description:
-            `Your personalized ${goal.subject} study plan for "${goal.title}".`,
+          description: plan.description,
 
-          days,
+          days: plan.days,
+
+          adaptive: plan.adaptive,
+
+          weakTopics: plan.weakTopics,
+
+          averageTopics: plan.averageTopics,
+
+          strongTopics: plan.strongTopics,
+
+          topicPriorities: plan.topicPriorities,
         });
 
       return res.status(201).json({
@@ -358,67 +410,10 @@ export const getStudyPlan =
        */
 
       if (!studyPlan) {
-        const totalDays =
-          calculateDays(
-            goal.targetDate,
-          );
-
-        const daysToGenerate =
-          Math.min(
-            totalDays,
-            90,
-          );
-
-        const topicsPerDay =
-          Math.max(
-            1,
-            Math.ceil(
-              goal.totalTopics /
-                daysToGenerate,
-            ),
-          );
-
-        const days = [];
-
-        for (
-          let dayIndex = 0;
-          dayIndex <
-          daysToGenerate;
-          dayIndex++
-        ) {
-          let dayName;
-
-          if (
-            dayIndex === 0
-          ) {
-            dayName = "Today";
-          } else if (
-            dayIndex === 1
-          ) {
-            dayName =
-              "Tomorrow";
-          } else {
-            dayName = `Day ${
-              dayIndex + 1
-            }`;
-          }
-
-          days.push({
-            day: dayName,
-
-            date:
-              createDate(
-                dayIndex,
-              ),
-
-            sessions:
-              generateSessions(
-                goal,
-                dayIndex,
-                topicsPerDay,
-              ),
-          });
-        }
+        const plan = await buildPlanForGoal(
+          goal,
+          userId,
+        );
 
         studyPlan =
           await StudyPlan.create({
@@ -426,10 +421,19 @@ export const getStudyPlan =
 
             goal: goal._id,
 
-            description:
-              `Your personalized ${goal.subject} study plan for "${goal.title}".`,
+            description: plan.description,
 
-            days,
+            days: plan.days,
+
+            adaptive: plan.adaptive,
+
+            weakTopics: plan.weakTopics,
+
+            averageTopics: plan.averageTopics,
+
+            strongTopics: plan.strongTopics,
+
+            topicPriorities: plan.topicPriorities,
           });
       }
 
@@ -522,6 +526,21 @@ export const getStudyPlan =
 
           days:
             studyPlan.days,
+
+          adaptive:
+            studyPlan.adaptive,
+
+          weakTopics:
+            studyPlan.weakTopics,
+
+          averageTopics:
+            studyPlan.averageTopics,
+
+          strongTopics:
+            studyPlan.strongTopics,
+
+          topicPriorities:
+            studyPlan.topicPriorities,
         },
       });
     } catch (error) {
@@ -565,57 +584,21 @@ export const getMyStudyPlan =
       });
 
       if (!studyPlan) {
-        const totalDays = calculateDays(
-          goal.targetDate,
+        const plan = await buildPlanForGoal(
+          goal,
+          userId,
         );
-
-        const daysToGenerate = Math.min(
-          totalDays,
-          90,
-        );
-
-        const topicsPerDay = Math.max(
-          1,
-          Math.ceil(
-            goal.totalTopics /
-              daysToGenerate,
-          ),
-        );
-
-        const days = [];
-
-        for (
-          let dayIndex = 0;
-          dayIndex < daysToGenerate;
-          dayIndex++
-        ) {
-          let dayName;
-
-          if (dayIndex === 0) {
-            dayName = "Today";
-          } else if (dayIndex === 1) {
-            dayName = "Tomorrow";
-          } else {
-            dayName = `Day ${dayIndex + 1}`;
-          }
-
-          days.push({
-            day: dayName,
-            date: createDate(dayIndex),
-            sessions: generateSessions(
-              goal,
-              dayIndex,
-              topicsPerDay,
-            ),
-          });
-        }
 
         studyPlan = await StudyPlan.create({
           user: userId,
           goal: goal._id,
-          description:
-            `Your personalized ${goal.subject} study plan for "${goal.title}".`,
-          days,
+          description: plan.description,
+          days: plan.days,
+          adaptive: plan.adaptive,
+          weakTopics: plan.weakTopics,
+          averageTopics: plan.averageTopics,
+          strongTopics: plan.strongTopics,
+          topicPriorities: plan.topicPriorities,
         });
       }
 
@@ -653,6 +636,11 @@ export const getMyStudyPlan =
             _id: studyPlan._id,
             description: studyPlan.description,
             days: studyPlan.days,
+            adaptive: studyPlan.adaptive,
+            weakTopics: studyPlan.weakTopics,
+            averageTopics: studyPlan.averageTopics,
+            strongTopics: studyPlan.strongTopics,
+            topicPriorities: studyPlan.topicPriorities,
           },
         },
       });
@@ -1028,67 +1016,10 @@ export const regenerateStudyPlan =
         user: userId,
       });
 
-      const totalDays =
-        calculateDays(
-          goal.targetDate,
-        );
-
-      const daysToGenerate =
-        Math.min(
-          totalDays,
-          90,
-        );
-
-      const topicsPerDay =
-        Math.max(
-          1,
-          Math.ceil(
-            goal.totalTopics /
-              daysToGenerate,
-          ),
-        );
-
-      const days = [];
-
-      for (
-        let dayIndex = 0;
-        dayIndex <
-        daysToGenerate;
-        dayIndex++
-      ) {
-        let dayName;
-
-        if (
-          dayIndex === 0
-        ) {
-          dayName = "Today";
-        } else if (
-          dayIndex === 1
-        ) {
-          dayName =
-            "Tomorrow";
-        } else {
-          dayName = `Day ${
-            dayIndex + 1
-          }`;
-        }
-
-        days.push({
-          day: dayName,
-
-          date:
-            createDate(
-              dayIndex,
-            ),
-
-          sessions:
-            generateSessions(
-              goal,
-              dayIndex,
-              topicsPerDay,
-            ),
-        });
-      }
+      const plan = await buildPlanForGoal(
+        goal,
+        userId,
+      );
 
       const newPlan =
         await StudyPlan.create({
@@ -1096,10 +1027,19 @@ export const regenerateStudyPlan =
 
           goal: goal._id,
 
-          description:
-            `Your regenerated ${goal.subject} study plan.`,
+          description: plan.description,
 
-          days,
+          days: plan.days,
+
+          adaptive: plan.adaptive,
+
+          weakTopics: plan.weakTopics,
+
+          averageTopics: plan.averageTopics,
+
+          strongTopics: plan.strongTopics,
+
+          topicPriorities: plan.topicPriorities,
         });
 
       return res.status(201).json({
