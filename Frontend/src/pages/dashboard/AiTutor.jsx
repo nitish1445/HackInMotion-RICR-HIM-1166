@@ -186,6 +186,20 @@ const AiTutor = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  useEffect(() => {
+    if (
+      mode !== "video" ||
+      !["RECORDING", "PAUSED"].includes(recordingState) ||
+      !liveVideoRef.current ||
+      !streamRef.current
+    ) {
+      return;
+    }
+
+    liveVideoRef.current.srcObject = streamRef.current;
+    liveVideoRef.current.play().catch(() => {});
+  }, [mode, recordingState]);
+
   /* =====================================================
      TIMER
   ===================================================== */
