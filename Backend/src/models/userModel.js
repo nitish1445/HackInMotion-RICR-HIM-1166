@@ -64,6 +64,23 @@ const userSchema = new mongoose.Schema(
       min: 0,
     },
 
+    longestStreak: {
+      type: Number,
+      default: 0,
+      min: 0,
+    },
+
+    /*
+     * Date-only (time zeroed) marker of the last day the
+     * user completed a successfully-analyzed practice
+     * session. Source of truth for streak calculation —
+     * never trust a client-supplied streak value.
+     */
+    lastPracticeDate: {
+      type: Date,
+      default: null,
+    },
+
     badges: [
       {
         type: mongoose.Schema.Types.ObjectId,

@@ -1,5 +1,6 @@
 import Dashboard from "../models/dashboardModel.js";
 import User from "../models/userModel.js";
+import { buildLearningOverview } from "../service/dashboardOverviewService.js";
 
 /*
 |--------------------------------------------------------------------------
@@ -166,6 +167,14 @@ export const getDashboardOverview = async (
     const recommendation =
       generateRecommendation(dashboard);
 
+    /*
+     * Real learning-performance aggregation (Assessment +
+     * Mock Test + Study Plan). Kept as a separate object
+     * alongside the existing fields above so nothing that
+     * already consumes this endpoint breaks.
+     */
+    const learningOverview = await buildLearningOverview(userId);
+
     res.status(200).json({
       success: true,
 
@@ -180,6 +189,8 @@ export const getDashboardOverview = async (
         progress,
 
         streak: req.user.streak || 0,
+
+        longestStreak: req.user.longestStreak || 0,
 
         points: req.user.points || 0,
 
@@ -199,6 +210,8 @@ export const getDashboardOverview = async (
 
         achievements:
           dashboard.achievements || [],
+
+        learningOverview,
       },
     });
   } catch (error) {

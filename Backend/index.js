@@ -10,7 +10,6 @@ import morgan from "morgan";
 import cloudinary from "./src/config/cloudinary.js";
 
 import AuthRouter from "./src/routers/authRouter.js";
-import UserRouter from "./src/routers/userRouter.js";
 import connectDB from "./src/config/db.js";
 import DashboardRouter from "./src/routers/dashboardRouter.js";
 import GoalRouter from "./src/routers/goalRouter.js";
@@ -19,7 +18,7 @@ import ProgressRouter from "./src/routers/progressRouter.js";
 import AiRouter from "./src/routers/Airouter.js";
 import AssessmentRouter from "./src/routers/assessmentRouter.js";
 import TestRouter from "./src/routers/testRouter.js";
-import ExplanationRouter from "./src/routers/explanationRouter.js";
+import PracticeRouter from "./src/routers/practiceRouter.js";
 
 /* =========================================================
    DEBUG ENV
@@ -81,7 +80,6 @@ app.use(morgan("dev"));
 
 app.use("/auth", AuthRouter);
 
-app.use("/user", UserRouter);
 app.use("/dashboard", DashboardRouter);
 
 app.use("/goals", GoalRouter);
@@ -96,7 +94,7 @@ app.use("/api/assessment", AssessmentRouter);
 
 app.use("/api/tests", TestRouter);
 
-app.use("/api/explanations", ExplanationRouter);
+app.use("/api/practice", PracticeRouter);
 
 /* =========================================================
    HEALTH CHECK
