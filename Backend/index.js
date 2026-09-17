@@ -57,7 +57,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:5173",
-      "https://devlab-hackathon-project.vercel.app",
+      "https://edutech-hackathon-project.vercel.app",
     ],
     credentials: true,
   })
