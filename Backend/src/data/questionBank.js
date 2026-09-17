@@ -29,6 +29,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "Variables & Scope",
       difficulty: "easy",
+      explanation: "A block-scoped variable declared with `let` is only accessible within the block it is defined in.",
     },
     {
       question: "What does typeof null return in JavaScript?",
@@ -36,6 +37,7 @@ const rawQuestionBank = {
       correctAnswer: 2,
       topic: "Variables & Scope",
       difficulty: "medium",
+      explanation: "`typeof null` is a long-standing JavaScript quirk that returns \"object\" instead of \"null\".",
     },
     {
       question:
@@ -44,6 +46,7 @@ const rawQuestionBank = {
       correctAnswer: 2,
       topic: "Variables & Scope",
       difficulty: "hard",
+      explanation: "Accessing a `let`/`const` variable before its declaration inside its scope throws a ReferenceError due to the temporal dead zone.",
     },
     {
       question: "How do you write an arrow function that takes no arguments and returns 5?",
@@ -51,6 +54,7 @@ const rawQuestionBank = {
       correctAnswer: 0,
       topic: "Functions",
       difficulty: "easy",
+      explanation: "An arrow function body can be a single expression, which is returned implicitly without a `return` keyword.",
     },
     {
       question: "What value does a JavaScript function return if it has no explicit return statement?",
@@ -58,6 +62,7 @@ const rawQuestionBank = {
       correctAnswer: 2,
       topic: "Functions",
       difficulty: "easy",
+      explanation: "If a function has no `return` statement, JavaScript implicitly returns `undefined`.",
     },
     {
       question:
@@ -71,6 +76,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "Functions",
       difficulty: "medium",
+      explanation: "Arrow functions do not bind their own `this`; they use the `this` value from the enclosing lexical scope.",
     },
     {
       question: "What is a closure in JavaScript?",
@@ -83,6 +89,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "Closures",
       difficulty: "medium",
+      explanation: "A closure is formed when a function retains access to variables from the scope in which it was created.",
     },
     {
       question:
@@ -91,6 +98,7 @@ const rawQuestionBank = {
       correctAnswer: 2,
       topic: "Closures",
       difficulty: "hard",
+      explanation: "The closure keeps its own `c` in memory across calls, so it increments from 0 to 1, then 1 to 2.",
     },
     {
       question: "Closures are commonly used to achieve which of the following?",
@@ -103,6 +111,7 @@ const rawQuestionBank = {
       correctAnswer: 0,
       topic: "Closures",
       difficulty: "easy",
+      explanation: "Because a closure keeps variables private to its enclosing function, it is a common pattern for encapsulation.",
     },
     {
       question: "What does a JavaScript Promise represent?",
@@ -115,6 +124,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "Promises & Async",
       difficulty: "medium",
+      explanation: "A Promise is an object representing a value that may be available now, later, or never (asynchronous completion or failure).",
     },
     {
       question: "Which keyword pauses execution of an async function until a Promise settles?",
@@ -122,6 +132,7 @@ const rawQuestionBank = {
       correctAnswer: 2,
       topic: "Promises & Async",
       difficulty: "easy",
+      explanation: "`await` pauses an async function until the awaited Promise settles, then resumes with its resolved value.",
     },
     {
       question:
@@ -135,6 +146,7 @@ const rawQuestionBank = {
       correctAnswer: 0,
       topic: "Promises & Async",
       difficulty: "medium",
+      explanation: "Wrapping an `await` call in try/catch lets you catch a rejected Promise the same way you would a thrown error.",
     },
     {
       question:
@@ -143,6 +155,7 @@ const rawQuestionBank = {
       correctAnswer: 2,
       topic: "Promises & Async",
       difficulty: "hard",
+      explanation: "`Promise.allSettled` resolves once every promise has settled, returning each one's outcome instead of short-circuiting on the first rejection.",
     },
     {
       question: "Which method is used to select a single element by its id in the DOM?",
@@ -155,6 +168,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "DOM",
       difficulty: "easy",
+      explanation: "`document.getElementById` returns the single element matching the given id attribute.",
     },
     {
       question:
@@ -168,6 +182,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "DOM",
       difficulty: "medium",
+      explanation: "Unlike `onclick`, which can only hold one handler at a time, `addEventListener` lets you attach multiple listeners to the same event.",
     },
   ],
 
@@ -178,6 +193,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "OOP Basics",
       difficulty: "easy",
+      explanation: "The `extends` keyword is used to create a subclass that inherits from a superclass in Java.",
     },
     {
       question: "Which OOP principle allows a single method name to behave differently based on inputs?",
@@ -185,6 +201,7 @@ const rawQuestionBank = {
       correctAnswer: 2,
       topic: "OOP Basics",
       difficulty: "medium",
+      explanation: "Polymorphism lets a method behave differently depending on the object or arguments it is invoked with.",
     },
     {
       question:
@@ -198,6 +215,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "OOP Basics",
       difficulty: "hard",
+      explanation: "Overloading is resolved at compile time based on parameter lists; overriding replaces a parent method's behavior at runtime.",
     },
     {
       question: "Which of these is a primitive data type in Java?",
@@ -205,6 +223,7 @@ const rawQuestionBank = {
       correctAnswer: 2,
       topic: "Data Types & Syntax",
       difficulty: "easy",
+      explanation: "`int` is one of Java's eight primitive data types; `String`, `Integer`, and `ArrayList` are all reference/object types.",
     },
     {
       question: "What is the default value of a boolean instance variable in Java?",
@@ -212,6 +231,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "Data Types & Syntax",
       difficulty: "medium",
+      explanation: "Uninitialized boolean instance variables in Java default to `false`.",
     },
     {
       question: "Which keyword makes a variable's value constant after initialization in Java?",
@@ -219,6 +239,7 @@ const rawQuestionBank = {
       correctAnswer: 2,
       topic: "Data Types & Syntax",
       difficulty: "easy",
+      explanation: "The `final` keyword prevents a variable from being reassigned after its initial value is set.",
     },
     {
       question: "Which block always executes in a Java try/catch, whether or not an exception occurs?",
@@ -226,6 +247,7 @@ const rawQuestionBank = {
       correctAnswer: 2,
       topic: "Exception Handling",
       difficulty: "easy",
+      explanation: "A `finally` block always runs after try/catch, regardless of whether an exception was thrown or caught.",
     },
     {
       question: "What is the difference between a checked and an unchecked exception in Java?",
@@ -238,6 +260,7 @@ const rawQuestionBank = {
       correctAnswer: 0,
       topic: "Exception Handling",
       difficulty: "medium",
+      explanation: "Checked exceptions must be declared with `throws` or caught at compile time; unchecked exceptions are not enforced by the compiler.",
     },
     {
       question:
@@ -251,6 +274,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "Exception Handling",
       difficulty: "hard",
+      explanation: "A `return` in `finally` overrides any pending return value from the `try` block, since `finally` always executes last.",
     },
     {
       question: "Which Java interface represents a collection that does not allow duplicate elements?",
@@ -258,6 +282,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "Collections",
       difficulty: "easy",
+      explanation: "A `Set` is a collection that enforces uniqueness and does not allow duplicate elements.",
     },
     {
       question: "Which Java collection maintains key-value pairs?",
@@ -265,6 +290,7 @@ const rawQuestionBank = {
       correctAnswer: 2,
       topic: "Collections",
       difficulty: "easy",
+      explanation: "`HashMap` stores data as key-value pairs, allowing fast lookup by key.",
     },
     {
       question:
@@ -278,6 +304,7 @@ const rawQuestionBank = {
       correctAnswer: 0,
       topic: "Collections",
       difficulty: "medium",
+      explanation: "ArrayList offers O(1) random access via indices, while LinkedList offers faster insertion/removal at the ends since it uses node references.",
     },
     {
       question: "What does the `synchronized` keyword do in Java multithreading?",
@@ -290,6 +317,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "Multithreading",
       difficulty: "medium",
+      explanation: "`synchronized` ensures only one thread can execute a given method or block at a time, preventing race conditions.",
     },
     {
       question: "Which class is commonly extended (or interface implemented) to create a thread in Java?",
@@ -297,6 +325,7 @@ const rawQuestionBank = {
       correctAnswer: 0,
       topic: "Multithreading",
       difficulty: "easy",
+      explanation: "A thread in Java is created either by extending the `Thread` class or implementing the `Runnable` interface.",
     },
     {
       question:
@@ -310,6 +339,7 @@ const rawQuestionBank = {
       correctAnswer: 0,
       topic: "Multithreading",
       difficulty: "hard",
+      explanation: "A deadlock occurs when two or more threads each hold a lock the other needs and neither will release it.",
     },
   ],
 
@@ -320,6 +350,7 @@ const rawQuestionBank = {
       correctAnswer: 0,
       topic: "Arrays",
       difficulty: "easy",
+      explanation: "Arrays support direct indexed access, so retrieving any element by index takes constant time.",
     },
     {
       question: "What is the worst-case time complexity of inserting an element at the beginning of an array?",
@@ -327,6 +358,7 @@ const rawQuestionBank = {
       correctAnswer: 2,
       topic: "Arrays",
       difficulty: "medium",
+      explanation: "Inserting at the front of an array requires shifting every existing element over by one position, which takes linear time.",
     },
     {
       question:
@@ -340,6 +372,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "Arrays",
       difficulty: "hard",
+      explanation: "Starting pointers at both ends of a sorted array and moving them inward finds a target sum in linear time.",
     },
     {
       question: "In a singly linked list, each node stores data and:",
@@ -352,6 +385,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "Linked Lists",
       difficulty: "easy",
+      explanation: "Each node in a singly linked list stores its data plus a reference to the next node in the sequence.",
     },
     {
       question: "What is the time complexity of inserting a node at the head of a singly linked list?",
@@ -359,6 +393,7 @@ const rawQuestionBank = {
       correctAnswer: 0,
       topic: "Linked Lists",
       difficulty: "medium",
+      explanation: "Adding a node at the head only requires updating the head pointer, which is a constant-time operation.",
     },
     {
       question: "Which technique is commonly used to detect a cycle in a linked list?",
@@ -366,6 +401,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "Linked Lists",
       difficulty: "hard",
+      explanation: "Floyd's technique uses a slow and a fast pointer; if they ever meet, the list contains a cycle.",
     },
     {
       question: "Which sorting algorithm repeatedly swaps adjacent elements if they are in the wrong order?",
@@ -373,6 +409,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "Sorting",
       difficulty: "easy",
+      explanation: "Bubble sort repeatedly compares and swaps adjacent out-of-order elements until the list is sorted.",
     },
     {
       question: "What is the average-case time complexity of quicksort?",
@@ -380,6 +417,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "Sorting",
       difficulty: "medium",
+      explanation: "On average, quicksort splits the array into roughly balanced partitions, giving it O(n log n) average performance.",
     },
     {
       question: "Why does quicksort degrade to O(n^2) in the worst case?",
@@ -392,6 +430,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "Sorting",
       difficulty: "hard",
+      explanation: "A poorly chosen pivot (e.g. on already-sorted data) can produce maximally unbalanced partitions, degrading quicksort to O(n^2).",
     },
     {
       question: "In a binary search tree, where are values smaller than a node's value stored?",
@@ -399,6 +438,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "Trees",
       difficulty: "easy",
+      explanation: "In a BST, every value in a node's left subtree is smaller than the node's own value.",
     },
     {
       question: "What is the time complexity of searching in a balanced binary search tree?",
@@ -406,6 +446,7 @@ const rawQuestionBank = {
       correctAnswer: 2,
       topic: "Trees",
       difficulty: "medium",
+      explanation: "A balanced BST halves the search space at each step, giving logarithmic search time.",
     },
     {
       question:
@@ -414,6 +455,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "Trees",
       difficulty: "medium",
+      explanation: "In-order traversal visits the left subtree, then the current node, then the right subtree — yielding sorted output for a BST.",
     },
     {
       question: "What does Big-O notation describe?",
@@ -426,6 +468,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "Time Complexity",
       difficulty: "easy",
+      explanation: "Big-O describes how an algorithm's time or space requirements scale as the input size grows, as an upper bound.",
     },
     {
       question: "An algorithm with time complexity O(2^n) is best described as:",
@@ -433,6 +476,7 @@ const rawQuestionBank = {
       correctAnswer: 2,
       topic: "Time Complexity",
       difficulty: "medium",
+      explanation: "O(2^n) means the work roughly doubles with each additional input element, characteristic of exponential-time algorithms.",
     },
     {
       question:
@@ -441,6 +485,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "Time Complexity",
       difficulty: "hard",
+      explanation: "O(n log n) grows more slowly than O(n^2) as n increases, making it the more efficient choice for large inputs.",
     },
   ],
 
@@ -451,6 +496,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "Basics",
       difficulty: "easy",
+      explanation: "`SELECT` is the SQL statement used to query and retrieve rows from one or more tables.",
     },
     {
       question: "Which clause is used to filter rows before grouping in SQL?",
@@ -458,6 +504,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "Basics",
       difficulty: "medium",
+      explanation: "`WHERE` filters individual rows before any grouping happens; `HAVING` filters after grouping.",
     },
     {
       question: "Which SQL statement removes rows from a table without deleting the table structure itself?",
@@ -465,6 +512,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "Basics",
       difficulty: "easy",
+      explanation: "`DELETE FROM` removes matching rows but keeps the table structure intact, unlike `DROP TABLE`.",
     },
     {
       question: "Which JOIN returns only the rows that have matching values in both tables?",
@@ -472,6 +520,7 @@ const rawQuestionBank = {
       correctAnswer: 2,
       topic: "Joins",
       difficulty: "easy",
+      explanation: "An `INNER JOIN` returns only rows where the join condition matches in both tables.",
     },
     {
       question:
@@ -480,6 +529,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "Joins",
       difficulty: "medium",
+      explanation: "A `LEFT JOIN` keeps every row from the left table, filling in NULLs for unmatched right-table columns.",
     },
     {
       question: "A SELF JOIN is best described as:",
@@ -492,6 +542,7 @@ const rawQuestionBank = {
       correctAnswer: 0,
       topic: "Joins",
       difficulty: "hard",
+      explanation: "A SELF JOIN joins a table with itself, usually using table aliases to distinguish the two references.",
     },
     {
       question: "Which SQL function returns the number of rows matching a condition?",
@@ -499,6 +550,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "Aggregation",
       difficulty: "easy",
+      explanation: "`COUNT()` returns the number of rows that satisfy the given condition.",
     },
     {
       question: "Which clause is used to filter groups after a GROUP BY, based on an aggregate condition?",
@@ -506,6 +558,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "Aggregation",
       difficulty: "medium",
+      explanation: "`HAVING` filters grouped results based on an aggregate condition, applied after `GROUP BY`.",
     },
     {
       question:
@@ -519,6 +572,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "Aggregation",
       difficulty: "hard",
+      explanation: "The query groups employees by department, computes each department's average salary, then keeps only departments above the 50000 threshold.",
     },
     {
       question: "Which constraint ensures a column's value must be unique and not null, and identifies each row?",
@@ -526,6 +580,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "Constraints",
       difficulty: "easy",
+      explanation: "A `PRIMARY KEY` uniquely identifies each row and implicitly enforces both uniqueness and NOT NULL.",
     },
     {
       question: "What does a FOREIGN KEY constraint enforce?",
@@ -538,6 +593,7 @@ const rawQuestionBank = {
       correctAnswer: 0,
       topic: "Constraints",
       difficulty: "medium",
+      explanation: "A `FOREIGN KEY` enforces that a column's value must exist as a valid value in a referenced table.",
     },
     {
       question: "Which constraint prevents a column from storing an empty/missing value?",
@@ -545,6 +601,7 @@ const rawQuestionBank = {
       correctAnswer: 0,
       topic: "Constraints",
       difficulty: "easy",
+      explanation: "`NOT NULL` prevents a column from ever storing a missing/empty value.",
     },
     {
       question: "What is a subquery in SQL?",
@@ -557,6 +614,7 @@ const rawQuestionBank = {
       correctAnswer: 0,
       topic: "Subqueries",
       difficulty: "easy",
+      explanation: "A subquery is a query embedded inside another query, often used to compute a value the outer query depends on.",
     },
     {
       question:
@@ -570,6 +628,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "Subqueries",
       difficulty: "medium",
+      explanation: "The inner query computes the average salary once, which the outer query then uses as its comparison threshold.",
     },
     {
       question:
@@ -583,6 +642,7 @@ const rawQuestionBank = {
       correctAnswer: 0,
       topic: "Subqueries",
       difficulty: "hard",
+      explanation: "A correlated subquery references a column from the outer query and is re-evaluated once per outer row, unlike an independent subquery.",
     },
   ],
 
@@ -598,6 +658,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "Normalization",
       difficulty: "easy",
+      explanation: "Normalization restructures tables to minimize redundant data and keep the database consistent as it changes.",
     },
     {
       question: "A table in First Normal Form (1NF) must have:",
@@ -610,6 +671,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "Normalization",
       difficulty: "medium",
+      explanation: "1NF requires every column to hold a single, indivisible value rather than a list or repeating group.",
     },
     {
       question:
@@ -623,6 +685,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "Normalization",
       difficulty: "hard",
+      explanation: "3NF builds on 2NF by removing transitive dependencies, so non-key columns depend only on the primary key.",
     },
     {
       question: "What is a primary key?",
@@ -635,6 +698,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "Keys",
       difficulty: "easy",
+      explanation: "A primary key is a column (or set of columns) whose values uniquely identify every row in the table.",
     },
     {
       question: "What is a composite key?",
@@ -647,6 +711,7 @@ const rawQuestionBank = {
       correctAnswer: 0,
       topic: "Keys",
       difficulty: "medium",
+      explanation: "A composite key combines two or more columns whose values, together, uniquely identify a row.",
     },
     {
       question: "A candidate key that is not chosen as the primary key is called a(n):",
@@ -654,6 +719,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "Keys",
       difficulty: "hard",
+      explanation: "A candidate key not chosen as the primary key becomes an alternate key.",
     },
     {
       question: "In database transactions, what does the 'A' in the ACID acronym stand for?",
@@ -661,6 +727,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "Transactions",
       difficulty: "easy",
+      explanation: "Atomicity guarantees a transaction either completes fully or has no effect at all — no partial updates.",
     },
     {
       question: "What does the 'Isolation' property in ACID transactions guarantee?",
@@ -673,6 +740,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "Transactions",
       difficulty: "medium",
+      explanation: "Isolation ensures concurrently running transactions don't see each other's uncommitted intermediate changes.",
     },
     {
       question:
@@ -681,6 +749,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "Transactions",
       difficulty: "hard",
+      explanation: "A dirty read happens when a transaction reads data that another transaction has changed but not yet committed.",
     },
     {
       question: "What is the main benefit of adding an index to a database column?",
@@ -693,6 +762,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "Indexing",
       difficulty: "easy",
+      explanation: "An index lets the database jump directly to matching rows instead of scanning the whole table, speeding up reads.",
     },
     {
       question: "What is a common tradeoff of adding many indexes to a table?",
@@ -705,6 +775,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "Indexing",
       difficulty: "medium",
+      explanation: "Every index must be updated on every write, so more indexes mean slower inserts/updates and more storage used.",
     },
     {
       question: "A B-Tree index is commonly favored in databases mainly because it:",
@@ -717,6 +788,7 @@ const rawQuestionBank = {
       correctAnswer: 0,
       topic: "Indexing",
       difficulty: "hard",
+      explanation: "B-Trees keep data sorted, so they support efficient equality lookups as well as range queries.",
     },
     {
       question: "In an Entity-Relationship (ER) diagram, a rectangle typically represents:",
@@ -724,6 +796,7 @@ const rawQuestionBank = {
       correctAnswer: 2,
       topic: "ER Model",
       difficulty: "easy",
+      explanation: "In ER diagrams, a rectangle conventionally represents an entity (a real-world object or concept).",
     },
     {
       question: "In ER modeling, a diamond shape typically represents:",
@@ -731,6 +804,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "ER Model",
       difficulty: "medium",
+      explanation: "A diamond shape in an ER diagram represents a relationship connecting two or more entities.",
     },
     {
       question:
@@ -744,6 +818,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "ER Model",
       difficulty: "hard",
+      explanation: "A weak entity has no sufficient attributes of its own to be uniquely identified and instead depends on an owning entity.",
     },
   ],
 
@@ -759,6 +834,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "Processes",
       difficulty: "easy",
+      explanation: "A process is a running instance of a program, with its own allocated memory and system resources.",
     },
     {
       question: "What is the main difference between a process and a thread?",
@@ -771,6 +847,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "Processes",
       difficulty: "medium",
+      explanation: "Each process has its own isolated memory space, while threads within one process share that same memory.",
     },
     {
       question: "Which state describes a process that is ready to run but waiting for CPU time?",
@@ -778,6 +855,7 @@ const rawQuestionBank = {
       correctAnswer: 2,
       topic: "Processes",
       difficulty: "medium",
+      explanation: "A process in the ready state has everything it needs to run but is waiting for the CPU to become available.",
     },
     {
       question: "What is the goal of a CPU scheduling algorithm?",
@@ -790,6 +868,7 @@ const rawQuestionBank = {
       correctAnswer: 0,
       topic: "Scheduling",
       difficulty: "easy",
+      explanation: "A CPU scheduler decides which of the ready processes gets to run on the CPU next.",
     },
     {
       question: "Which scheduling algorithm can cause 'starvation' of short-burst processes?",
@@ -797,6 +876,7 @@ const rawQuestionBank = {
       correctAnswer: 2,
       topic: "Scheduling",
       difficulty: "hard",
+      explanation: "Strict priority scheduling can indefinitely delay (starve) lower-priority processes unless aging is used to boost their priority over time.",
     },
     {
       question: "Round Robin scheduling primarily relies on which concept?",
@@ -804,6 +884,7 @@ const rawQuestionBank = {
       correctAnswer: 0,
       topic: "Scheduling",
       difficulty: "medium",
+      explanation: "Round Robin gives each process a fixed time slice (quantum) before moving on to the next, cycling through the queue.",
     },
     {
       question: "What is the purpose of virtual memory?",
@@ -816,6 +897,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "Memory Management",
       difficulty: "medium",
+      explanation: "Virtual memory lets a process address more memory than is physically installed by using disk space as overflow.",
     },
     {
       question: "What is 'paging' in operating systems?",
@@ -828,6 +910,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "Memory Management",
       difficulty: "medium",
+      explanation: "Paging divides memory into fixed-size blocks (pages/frames) to allocate memory flexibly and avoid external fragmentation.",
     },
     {
       question: "What is thrashing in the context of memory management?",
@@ -840,6 +923,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "Memory Management",
       difficulty: "hard",
+      explanation: "Thrashing occurs when the system spends more time swapping pages in and out than doing actual useful work.",
     },
     {
       question: "Which of the following is one of the four necessary conditions for a deadlock?",
@@ -847,6 +931,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "Deadlocks",
       difficulty: "medium",
+      explanation: "Mutual exclusion — a resource can only be held by one process at a time — is one of the four necessary deadlock conditions.",
     },
     {
       question: "What does 'circular wait' mean in the context of deadlocks?",
@@ -859,6 +944,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "Deadlocks",
       difficulty: "hard",
+      explanation: "Circular wait happens when a chain of processes each wait on a resource held by the next process in the cycle.",
     },
     {
       question: "Which strategy avoids deadlock by ensuring the system never enters an unsafe state?",
@@ -866,6 +952,7 @@ const rawQuestionBank = {
       correctAnswer: 0,
       topic: "Deadlocks",
       difficulty: "medium",
+      explanation: "The Banker's Algorithm (or simply denying one of the four deadlock conditions) is used to avoid entering an unsafe state.",
     },
     {
       question: "What is a file system responsible for in an operating system?",
@@ -878,6 +965,7 @@ const rawQuestionBank = {
       correctAnswer: 0,
       topic: "File Systems",
       difficulty: "easy",
+      explanation: "A file system organizes how data is named, stored, and retrieved on a storage device.",
     },
     {
       question: "What is an inode in Unix-like file systems?",
@@ -890,6 +978,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "File Systems",
       difficulty: "hard",
+      explanation: "An inode stores a file's metadata (permissions, size, pointers to data blocks) but not its filename.",
     },
     {
       question: "What does 'file fragmentation' refer to?",
@@ -902,6 +991,7 @@ const rawQuestionBank = {
       correctAnswer: 0,
       topic: "File Systems",
       difficulty: "medium",
+      explanation: "Fragmentation happens when a file's data ends up scattered in non-contiguous blocks across the storage device.",
     },
   ],
 
@@ -912,6 +1002,7 @@ const rawQuestionBank = {
       correctAnswer: 2,
       topic: "OSI Model",
       difficulty: "easy",
+      explanation: "The OSI reference model organizes networking into seven distinct layers, from physical transmission up to the application.",
     },
     {
       question: "Which OSI layer is responsible for routing packets between networks?",
@@ -919,6 +1010,7 @@ const rawQuestionBank = {
       correctAnswer: 2,
       topic: "OSI Model",
       difficulty: "medium",
+      explanation: "The Network layer is responsible for logical addressing and routing packets across different networks.",
     },
     {
       question:
@@ -927,6 +1019,7 @@ const rawQuestionBank = {
       correctAnswer: 0,
       topic: "OSI Model",
       difficulty: "hard",
+      explanation: "The Transport layer (e.g. TCP) provides reliable, ordered, end-to-end delivery between hosts.",
     },
     {
       question: "What does TCP stand for?",
@@ -939,6 +1032,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "TCP/IP",
       difficulty: "easy",
+      explanation: "TCP stands for Transmission Control Protocol, a core reliable, connection-oriented internet protocol.",
     },
     {
       question: "What is the key difference between TCP and UDP?",
@@ -951,6 +1045,7 @@ const rawQuestionBank = {
       correctAnswer: 0,
       topic: "TCP/IP",
       difficulty: "medium",
+      explanation: "TCP guarantees ordered, reliable delivery via connections; UDP is connectionless and does not guarantee delivery or order.",
     },
     {
       question: "What is the purpose of the TCP three-way handshake?",
@@ -963,6 +1058,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "TCP/IP",
       difficulty: "hard",
+      explanation: "The handshake (SYN, SYN-ACK, ACK) lets both sides confirm they're ready before any data is exchanged.",
     },
     {
       question: "Which HTTP method is typically used to retrieve data without modifying server state?",
@@ -970,6 +1066,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "HTTP",
       difficulty: "easy",
+      explanation: "`GET` is the HTTP method conventionally used to fetch a resource without modifying server state.",
     },
     {
       question: "What does HTTP status code 404 mean?",
@@ -977,6 +1074,7 @@ const rawQuestionBank = {
       correctAnswer: 2,
       topic: "HTTP",
       difficulty: "easy",
+      explanation: "HTTP 404 indicates the requested resource could not be found on the server.",
     },
     {
       question:
@@ -990,6 +1088,7 @@ const rawQuestionBank = {
       correctAnswer: 0,
       topic: "HTTP",
       difficulty: "medium",
+      explanation: "HTTPS wraps HTTP traffic in TLS/SSL encryption, protecting data in transit; plain HTTP does not.",
     },
     {
       question: "What is the primary function of DNS?",
@@ -1002,6 +1101,7 @@ const rawQuestionBank = {
       correctAnswer: 0,
       topic: "DNS",
       difficulty: "easy",
+      explanation: "DNS resolves human-readable domain names into the IP addresses computers use to route traffic.",
     },
     {
       question: "What is a DNS 'A' record used for?",
@@ -1014,6 +1114,7 @@ const rawQuestionBank = {
       correctAnswer: 0,
       topic: "DNS",
       difficulty: "medium",
+      explanation: "A DNS A record maps a domain name directly to an IPv4 address.",
     },
     {
       question: "What does DNS caching primarily improve?",
@@ -1026,6 +1127,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "DNS",
       difficulty: "hard",
+      explanation: "Caching a previously resolved DNS lookup avoids repeating the full resolution process for the same domain, speeding things up.",
     },
     {
       question: "What is the main job of a router in a network?",
@@ -1038,6 +1140,7 @@ const rawQuestionBank = {
       correctAnswer: 0,
       topic: "Routing",
       difficulty: "easy",
+      explanation: "A router examines destination IP addresses and forwards packets toward the correct next network.",
     },
     {
       question: "What does a routing table store?",
@@ -1050,6 +1153,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "Routing",
       difficulty: "medium",
+      explanation: "A routing table stores the paths/next-hops a router uses to decide where to forward each packet.",
     },
     {
       question:
@@ -1063,6 +1167,7 @@ const rawQuestionBank = {
       correctAnswer: 0,
       topic: "Routing",
       difficulty: "hard",
+      explanation: "Dijkstra's algorithm computes the lowest-cost path (e.g. fewest hops or lowest latency) between network nodes.",
     },
   ],
 
@@ -1073,6 +1178,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "HTML Basics",
       difficulty: "easy",
+      explanation: "The `<a>` tag defines a hyperlink, typically using the `href` attribute to specify the destination.",
     },
     {
       question: "Which HTML element is used to embed an image?",
@@ -1080,6 +1186,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "HTML Basics",
       difficulty: "easy",
+      explanation: "The `<img>` tag embeds an image, using `src` to point to the image file.",
     },
     {
       question:
@@ -1093,6 +1200,7 @@ const rawQuestionBank = {
       correctAnswer: 0,
       topic: "HTML Basics",
       difficulty: "medium",
+      explanation: "Semantic elements convey the meaning of their content, improving accessibility and SEO, while `<div>` carries no inherent meaning.",
     },
     {
       question: "Which CSS selector targets an element with a specific id?",
@@ -1100,6 +1208,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "CSS Selectors",
       difficulty: "easy",
+      explanation: "The `#` symbol targets an element by its unique `id` attribute in CSS.",
     },
     {
       question: "Which selector has higher specificity in CSS?",
@@ -1107,6 +1216,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "CSS Selectors",
       difficulty: "medium",
+      explanation: "An id selector (#example) has higher specificity than a class selector, so its rules take precedence when they conflict.",
     },
     {
       question: "What does the CSS selector `div > p` target?",
@@ -1119,6 +1229,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "CSS Selectors",
       difficulty: "hard",
+      explanation: "The `>` combinator restricts a selector to direct children only, not all descendants.",
     },
     {
       question: "In the CSS box model, which is the innermost part of an element?",
@@ -1126,6 +1237,7 @@ const rawQuestionBank = {
       correctAnswer: 3,
       topic: "Box Model",
       difficulty: "easy",
+      explanation: "The content area is the innermost layer of the box model, surrounded by padding, border, and margin.",
     },
     {
       question: "What does `box-sizing: border-box` change about width calculation?",
@@ -1138,6 +1250,7 @@ const rawQuestionBank = {
       correctAnswer: 0,
       topic: "Box Model",
       difficulty: "medium",
+      explanation: "`box-sizing: border-box` makes the specified width include padding and border, instead of just the content.",
     },
     {
       question: "Which CSS property creates space between an element's border and its content?",
@@ -1145,6 +1258,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "Box Model",
       difficulty: "easy",
+      explanation: "`padding` adds space between an element's content and its border.",
     },
     {
       question: "Which CSS property turns a container into a flex container?",
@@ -1152,6 +1266,7 @@ const rawQuestionBank = {
       correctAnswer: 0,
       topic: "Flexbox & Grid",
       difficulty: "easy",
+      explanation: "`display: flex` turns an element into a flex container, enabling flexbox layout for its children.",
     },
     {
       question: "In Flexbox, which property aligns items along the main axis?",
@@ -1159,6 +1274,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "Flexbox & Grid",
       difficulty: "medium",
+      explanation: "`justify-content` controls alignment of flex items along the main axis of the flex container.",
     },
     {
       question: "What is the main advantage of CSS Grid over Flexbox for layout?",
@@ -1171,6 +1287,7 @@ const rawQuestionBank = {
       correctAnswer: 0,
       topic: "Flexbox & Grid",
       difficulty: "hard",
+      explanation: "CSS Grid is built for two-dimensional layouts (rows and columns), while Flexbox excels at one-dimensional layouts.",
     },
     {
       question: "What is the purpose of a CSS media query?",
@@ -1183,6 +1300,7 @@ const rawQuestionBank = {
       correctAnswer: 0,
       topic: "Responsive Design",
       difficulty: "easy",
+      explanation: "Media queries apply CSS rules conditionally based on characteristics like viewport width, enabling responsive design.",
     },
     {
       question: "Which meta tag is essential for responsive design on mobile devices?",
@@ -1195,6 +1313,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "Responsive Design",
       difficulty: "medium",
+      explanation: "The viewport meta tag tells mobile browsers to match the page width to the device width instead of a fixed desktop width.",
     },
     {
       question: "What is the 'mobile-first' approach to responsive CSS?",
@@ -1207,6 +1326,7 @@ const rawQuestionBank = {
       correctAnswer: 0,
       topic: "Responsive Design",
       difficulty: "hard",
+      explanation: "Mobile-first CSS starts with base styles for small screens, then progressively enhances for larger screens using min-width media queries.",
     },
   ],
 
@@ -1222,6 +1342,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "Components & JSX",
       difficulty: "easy",
+      explanation: "JSX is a syntax extension that lets you write HTML-like markup directly inside JavaScript code.",
     },
     {
       question: "In React, what must a component's render output (JSX) have at the top level?",
@@ -1234,6 +1355,7 @@ const rawQuestionBank = {
       correctAnswer: 0,
       topic: "Components & JSX",
       difficulty: "medium",
+      explanation: "A component's returned JSX must have a single root element (or use a Fragment) so React can represent it as one tree node.",
     },
     {
       question:
@@ -1247,6 +1369,7 @@ const rawQuestionBank = {
       correctAnswer: 0,
       topic: "Components & JSX",
       difficulty: "medium",
+      explanation: "A Fragment (`<>...</>`) groups multiple children without introducing an extra wrapping element in the actual DOM.",
     },
     {
       question: "What are props in React?",
@@ -1259,6 +1382,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "Props & State",
       difficulty: "easy",
+      explanation: "Props are read-only data passed down from a parent component to configure a child component.",
     },
     {
       question: "What is the correct way to update state in a functional component using useState?",
@@ -1271,6 +1395,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "Props & State",
       difficulty: "easy",
+      explanation: "Calling the setter function returned by `useState` schedules a state update and triggers a re-render.",
     },
     {
       question:
@@ -1284,6 +1409,7 @@ const rawQuestionBank = {
       correctAnswer: 0,
       topic: "Props & State",
       difficulty: "hard",
+      explanation: "React detects state changes by reference; mutating state directly can leave React unaware that a re-render is needed.",
     },
     {
       question: "Which hook lets a functional component hold and update local state?",
@@ -1291,6 +1417,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "Hooks",
       difficulty: "easy",
+      explanation: "`useState` lets a functional component declare and update its own local state.",
     },
     {
       question: "Which hook is used to run side effects (like data fetching) after render?",
@@ -1298,6 +1425,7 @@ const rawQuestionBank = {
       correctAnswer: 2,
       topic: "Hooks",
       difficulty: "medium",
+      explanation: "`useEffect` runs side effects, like data fetching or subscriptions, after the component renders.",
     },
     {
       question:
@@ -1311,6 +1439,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "Hooks",
       difficulty: "medium",
+      explanation: "An empty dependency array `[]` means the effect has no reactive dependencies, so it only runs once after the initial render.",
     },
     {
       question:
@@ -1324,6 +1453,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "Hooks",
       difficulty: "hard",
+      explanation: "Hooks must be called unconditionally at the top level so React can reliably track their order across renders.",
     },
     {
       question: "In a class component, which lifecycle method runs once right after the component is first added to the DOM?",
@@ -1331,6 +1461,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "Lifecycle",
       difficulty: "medium",
+      explanation: "`componentDidMount` fires once, right after a class component is inserted into the DOM for the first time.",
     },
     {
       question: "Which lifecycle-equivalent behavior does `useEffect` with a cleanup function returned from it mimic?",
@@ -1343,6 +1474,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "Lifecycle",
       difficulty: "hard",
+      explanation: "A function returned from `useEffect` runs as cleanup, mirroring the unmount/re-run behavior class lifecycle methods provided separately.",
     },
     {
       question: "What triggers a React functional component to re-render?",
@@ -1355,6 +1487,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "Rendering",
       difficulty: "easy",
+      explanation: "React re-renders a component whenever its own state changes or the props passed to it change.",
     },
     {
       question: "What is the purpose of the `key` prop when rendering a list of elements?",
@@ -1367,6 +1500,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "Rendering",
       difficulty: "medium",
+      explanation: "The `key` prop helps React efficiently match list items across renders to detect additions, removals, and reorders.",
     },
     {
       question: "What does React's Virtual DOM primarily help optimize?",
@@ -1379,6 +1513,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "Rendering",
       difficulty: "medium",
+      explanation: "The Virtual DOM lets React compute the minimal set of real DOM changes needed, avoiding costly direct DOM manipulation.",
     },
   ],
 
@@ -1394,6 +1529,7 @@ const rawQuestionBank = {
       correctAnswer: 0,
       topic: "Modules",
       difficulty: "easy",
+      explanation: "Node.js embeds the V8 engine to run JavaScript outside the browser, commonly for building servers.",
     },
     {
       question: "Which keyword/function is used to import a module in CommonJS (traditional Node.js)?",
@@ -1401,6 +1537,7 @@ const rawQuestionBank = {
       correctAnswer: 2,
       topic: "Modules",
       difficulty: "easy",
+      explanation: "`require()` is the CommonJS syntax Node.js traditionally uses to import modules.",
     },
     {
       question:
@@ -1414,6 +1551,7 @@ const rawQuestionBank = {
       correctAnswer: 0,
       topic: "Modules",
       difficulty: "hard",
+      explanation: "CommonJS (`require`) loads modules synchronously; ES Modules (`import`) follow the ES spec and typically need `\"type\": \"module\"` or `.mjs` files.",
     },
     {
       question: "What is the Node.js event loop primarily responsible for?",
@@ -1426,6 +1564,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "Event Loop",
       difficulty: "medium",
+      explanation: "The event loop continuously checks for and dispatches pending callbacks, letting Node.js handle I/O without blocking.",
     },
     {
       question: "Is Node.js single-threaded or multi-threaded for executing JavaScript code?",
@@ -1438,6 +1577,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "Event Loop",
       difficulty: "hard",
+      explanation: "JavaScript itself runs on a single thread in Node.js, though I/O-heavy work can be offloaded to libuv's background thread pool.",
     },
     {
       question: "What does `setTimeout(fn, 0)` do in relation to the event loop?",
@@ -1450,6 +1590,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "Event Loop",
       difficulty: "medium",
+      explanation: "`setTimeout(fn, 0)` still defers `fn` to the event loop's timer phase, running after the current synchronous code finishes.",
     },
     {
       question: "What is the purpose of the `package.json` file in a Node.js project?",
@@ -1462,6 +1603,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "npm & package.json",
       difficulty: "easy",
+      explanation: "`package.json` describes a project's metadata, scripts, and dependencies, and configures how npm manages it.",
     },
     {
       question: "What command installs all dependencies listed in package.json?",
@@ -1469,6 +1611,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "npm & package.json",
       difficulty: "easy",
+      explanation: "`npm install` reads `package.json` and installs every listed dependency into `node_modules`.",
     },
     {
       question:
@@ -1482,6 +1625,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "npm & package.json",
       difficulty: "medium",
+      explanation: "`dependencies` are required at runtime in production, while `devDependencies` are only needed for development or build tooling.",
     },
     {
       question: "In Express.js, what is 'middleware'?",
@@ -1494,6 +1638,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "Express Basics",
       difficulty: "medium",
+      explanation: "Middleware in Express is a function that can inspect/modify the request and response, or end the cycle, before passing control onward.",
     },
     {
       question: "Which Express method defines a route that handles GET requests to '/users'?",
@@ -1506,6 +1651,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "Express Basics",
       difficulty: "easy",
+      explanation: "`app.get(path, handler)` registers a handler for GET requests to the given route.",
     },
     {
       question: "What does calling `next()` inside an Express middleware function do?",
@@ -1518,6 +1664,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "Express Basics",
       difficulty: "medium",
+      explanation: "Calling `next()` hands control to the next middleware or route handler in the chain.",
     },
     {
       question: "Why is asynchronous, non-blocking I/O central to Node.js's design?",
@@ -1530,6 +1677,7 @@ const rawQuestionBank = {
       correctAnswer: 0,
       topic: "Async I/O",
       difficulty: "medium",
+      explanation: "Non-blocking I/O lets a single thread juggle many concurrent I/O operations efficiently instead of waiting on each one sequentially.",
     },
     {
       question: "What is 'callback hell' in Node.js code?",
@@ -1542,6 +1690,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "Async I/O",
       difficulty: "easy",
+      explanation: "Callback hell refers to deeply nested callbacks that become hard to read, often cleaned up with Promises or async/await.",
     },
     {
       question:
@@ -1555,6 +1704,7 @@ const rawQuestionBank = {
       correctAnswer: 1,
       topic: "Async I/O",
       difficulty: "hard",
+      explanation: "Promise-based file APIs let you use `await` for cleaner, more linear-looking asynchronous code compared to nested callbacks.",
     },
   ],
 };

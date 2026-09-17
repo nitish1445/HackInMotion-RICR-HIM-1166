@@ -18,6 +18,8 @@ import studyPlanRouter from "./src/routers/studyPlanRouter.js";
 import ProgressRouter from "./src/routers/progressRouter.js";
 import AiRouter from "./src/routers/Airouter.js";
 import AssessmentRouter from "./src/routers/assessmentRouter.js";
+import TestRouter from "./src/routers/testRouter.js";
+import ExplanationRouter from "./src/routers/explanationRouter.js";
 
 /* =========================================================
    DEBUG ENV
@@ -91,6 +93,10 @@ app.use("/progress", ProgressRouter);
 app.use("/api/ai", AiRouter);
 
 app.use("/api/assessment", AssessmentRouter);
+
+app.use("/api/tests", TestRouter);
+
+app.use("/api/explanations", ExplanationRouter);
 
 /* =========================================================
    HEALTH CHECK

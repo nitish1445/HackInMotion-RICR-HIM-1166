@@ -571,6 +571,82 @@ const StudyPlanPage = () => {
       </div>
 
       {/* =====================================================
+          ADAPTIVE INSIGHTS
+      ===================================================== */}
+
+      {studyPlan?.adaptive &&
+        (studyPlan.weakTopics?.length > 0 ||
+          studyPlan.strongTopics?.length > 0) && (
+          <section className="mt-6 rounded-xl border border-primary-100 bg-white p-5 shadow-soft dark:border-white/5 dark:bg-panel-dark sm:p-6">
+            <p className="text-[10px] font-mono uppercase tracking-wider text-primary-500">
+              Your Adaptive Study Plan
+            </p>
+
+            <p className="mt-1 text-xs text-muted-light dark:text-muted-dark">
+              Based on your recent Knowledge Assessment and mock test
+              performance, this schedule gives more time to the topics you
+              need most.
+            </p>
+
+            <div className="mt-4 grid gap-4 sm:grid-cols-2">
+              {studyPlan.weakTopics?.length > 0 && (
+                <div>
+                  <p className="flex items-center gap-1.5 text-xs font-semibold text-amber-600 dark:text-amber-400">
+                    <FaExclamationTriangle size={11} />
+                    Weak Areas
+                  </p>
+                  <div className="mt-2 flex flex-wrap gap-1.5">
+                    {studyPlan.weakTopics.map((topic) => (
+                      <span
+                        key={topic}
+                        className="rounded-full bg-amber-50 px-2.5 py-1 text-[10px] font-medium text-amber-700 dark:bg-amber-900/20 dark:text-amber-400"
+                      >
+                        {topic}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {studyPlan.strongTopics?.length > 0 && (
+                <div>
+                  <p className="flex items-center gap-1.5 text-xs font-semibold text-emerald-600 dark:text-emerald-400">
+                    <FaCheckCircle size={11} />
+                    Strong Areas
+                  </p>
+                  <div className="mt-2 flex flex-wrap gap-1.5">
+                    {studyPlan.strongTopics.map((topic) => (
+                      <span
+                        key={topic}
+                        className="rounded-full bg-emerald-50 px-2.5 py-1 text-[10px] font-medium text-emerald-700 dark:bg-emerald-900/20 dark:text-emerald-400"
+                      >
+                        {topic}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          </section>
+        )}
+
+      {!studyPlan?.adaptive && studyPlan?.topicPriorities?.length > 0 && (
+        <section className="mt-6 rounded-xl border border-primary-100 bg-primary-50/40 p-4 text-xs text-ink-light dark:border-white/5 dark:bg-white/[0.02] dark:text-ink-dark sm:p-5">
+          <p className="flex items-center gap-2">
+            <FaExclamationTriangle size={11} className="shrink-0 text-primary-500" />
+            Complete the{" "}
+            <Link
+              to="/dashboard/assessment"
+              className="font-medium text-primary-500 hover:underline"
+            >
+              Knowledge Assessment
+            </Link>{" "}
+            to get a plan personalized to your weak areas.
+          </p>
+        </section>
+      )}
+
+      {/* =====================================================
           DAYS
       ===================================================== */}
 
@@ -725,6 +801,12 @@ const StudyPlanPage = () => {
                                   {getSessionType(session.type)}
                                 </span>
 
+                                {session.priority === "high" && (
+                                  <span className="rounded-md bg-amber-50 px-1.5 py-0.5 text-[8px] font-mono uppercase tracking-wider text-amber-600 dark:bg-amber-900/20 dark:text-amber-400">
+                                    🔥 High priority
+                                  </span>
+                                )}
+
                                 {sessionIndex === 0 && !completed && (
                                   <span className="rounded-md bg-primary-50 px-1.5 py-0.5 text-[8px] font-mono uppercase text-primary-500 dark:bg-primary-900/20">
                                     Next
@@ -754,6 +836,20 @@ const StudyPlanPage = () => {
                                   </p>
                                 )}
                               </div>
+
+                              {session.activities?.length > 0 && (
+                                <ul className="mt-2 space-y-0.5">
+                                  {session.activities.map((activity, i) => (
+                                    <li
+                                      key={i}
+                                      className="flex items-start gap-1.5 text-[10px] leading-4 text-muted-light dark:text-muted-dark"
+                                    >
+                                      <span className="mt-1 h-1 w-1 shrink-0 rounded-full bg-primary-300" />
+                                      {activity}
+                                    </li>
+                                  ))}
+                                </ul>
+                              )}
                             </div>
 
                             {/* COMPLETE BUTTON */}

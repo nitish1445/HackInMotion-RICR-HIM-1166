@@ -55,6 +55,7 @@ const buildBank = () => {
         correctAnswer: q.correctAnswer,
         topic: q.topic,
         difficulty: q.difficulty,
+        explanation: q.explanation || null,
       };
 
       byId.set(question.id, question);
@@ -90,6 +91,13 @@ const shuffle = (array) => {
 };
 
 /*
+ * Exported so other providers (e.g. the mock test
+ * provider) can reuse the same Fisher-Yates shuffle
+ * instead of re-implementing it.
+ */
+export const shuffleArray = shuffle;
+
+/*
  * Case/whitespace-insensitive subject lookup, so
  * "javascript", " JavaScript ", etc. all resolve.
  */
@@ -120,6 +128,26 @@ export const toPublicQuestion = (question) => ({
  * Used only server-side during scoring.
  */
 export const getQuestionById = (id) => byId.get(id) || null;
+
+/*
+ * Full question pool (with correct answers) for a
+ * subject — server-side only. Used by other providers
+ * (e.g. mock test generation) that need to filter/select
+ * from the same underlying bank without rebuilding it.
+ */
+export const getSubjectPool = (subject) => {
+  const resolvedSubject = resolveSubject(subject);
+  return resolvedSubject ? bank[resolvedSubject] : [];
+};
+
+/*
+ * Distinct topics available for a subject, in first-seen
+ * order. Used to validate/populate topic filters.
+ */
+export const getTopicsForSubject = (subject) => {
+  const pool = getSubjectPool(subject);
+  return [...new Set(pool.map((q) => q.topic))];
+};
 
 /*
 =========================================================

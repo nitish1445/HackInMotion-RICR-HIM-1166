@@ -15,6 +15,7 @@ import {
   FiBookOpen,
   FiPlus,
   FiCheckSquare,
+  FiMic,
 } from "react-icons/fi";
 import { FaGraduationCap } from "react-icons/fa";
 import { toast } from "react-hot-toast";
@@ -51,6 +52,11 @@ const navItems = [
     label: "Practice Tests",
     icon: FiFileText,
     path: "/dashboard/tests",
+  },
+  {
+    label: "Explain & Practice",
+    icon: FiMic,
+    path: "/dashboard/explain",
   },
   {
     label: "Progress",

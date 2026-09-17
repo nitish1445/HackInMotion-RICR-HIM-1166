@@ -52,6 +52,17 @@ const sessionSchema =
         type: String,
         default: "",
       },
+
+      priority: {
+        type: String,
+        enum: ["high", "medium", "low"],
+        default: "medium",
+      },
+
+      activities: {
+        type: [String],
+        default: [],
+      },
     },
     {
       timestamps: true,
@@ -118,6 +129,56 @@ const studyPlanSchema =
 
       days: {
         type: [studyDaySchema],
+        default: [],
+      },
+
+      /*
+       * Adaptive metadata — populated when the plan was
+       * generated from real assessment/mock-test
+       * performance data rather than the neutral/legacy
+       * generator. Kept optional so pre-existing plans
+       * (created before this feature) remain valid.
+       */
+      adaptive: {
+        type: Boolean,
+        default: false,
+      },
+
+      weakTopics: {
+        type: [String],
+        default: [],
+      },
+
+      averageTopics: {
+        type: [String],
+        default: [],
+      },
+
+      strongTopics: {
+        type: [String],
+        default: [],
+      },
+
+      topicPriorities: {
+        type: [
+          new mongoose.Schema(
+            {
+              topic: { type: String, required: true },
+              score: { type: Number, default: null },
+              category: {
+                type: String,
+                enum: ["weak", "average", "strong", "unassessed"],
+                required: true,
+              },
+              priority: {
+                type: String,
+                enum: ["high", "medium", "low"],
+                required: true,
+              },
+            },
+            { _id: false }
+          ),
+        ],
         default: [],
       },
     },
