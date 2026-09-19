@@ -20,7 +20,9 @@ import KnowledgeAssessment from "./pages/dashboard/KnowledgeAssessment";
 import TestsPage from "./pages/dashboard/TestsPage";
 import TestPage from "./pages/dashboard/TestPage";
 import ProgressPage from "./pages/dashboard/ProgressPage";
-import ExplainPractice from "./pages/dashboard/ExplainPractice";
+import AiTutor from "./pages/dashboard/AiTutor";
+import AiTutorResult from "./pages/dashboard/AiTutorResult";
+import AiTutorHistory from "./pages/dashboard/AiTutorHistory";
 import AchievementsPage from "./pages/dashboard/AchivementPage";
 import ProfilePage from "./pages/dashboard/ProfilePage";
 
@@ -103,8 +105,10 @@ const App = () => {
             {/* /dashboard/progress */}
             <Route path="progress" element={<ProgressPage />} />
 
-            {/* /dashboard/explain */}
-            <Route path="explain" element={<ExplainPractice />} />
+            {/* /dashboard/ai-tutor */}
+            <Route path="ai-tutor" element={<AiTutor />} />
+            <Route path="ai-tutor/result/:id" element={<AiTutorResult />} />
+            <Route path="ai-tutor/history" element={<AiTutorHistory />} />
 
             {/* /dashboard/achievements */}
             <Route path="achievements" element={<AchievementsPage />} />

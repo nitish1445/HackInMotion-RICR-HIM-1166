@@ -54,9 +54,9 @@ const navItems = [
     path: "/dashboard/tests",
   },
   {
-    label: "Explain & Practice",
+    label: "AI Tutor",
     icon: FiMic,
-    path: "/dashboard/explain",
+    path: "/dashboard/ai-tutor",
   },
   {
     label: "Progress",

@@ -5,6 +5,8 @@ import {
   getTopicsForSubject,
 } from "../service/assessmentQuestionProvider.js";
 
+import { logActivity } from "../service/learningActivityService.js";
+
 /*
 =========================================================
 CONFIG
@@ -122,6 +124,17 @@ export const createExplanation = async (req, res) => {
       duration: parsedDuration,
       recordedDuration: parsedRecordedDuration,
       status: "submitted",
+    });
+
+    await logActivity({
+      userId: req.user._id,
+      activityType: "VIDEO_EXPLANATION_COMPLETED",
+      subject: explanation.subject,
+      topic: explanation.topic,
+      metadata: {
+        recordedDuration: explanation.recordedDuration,
+      },
+      occurredAt: explanation.createdAt,
     });
 
     return res.status(201).json({

@@ -1,6 +1,7 @@
 import StudyPlan from "../models/studyPlanModel.js";
 import Goal from "../models/goalModel.js";
 import { generateAdaptiveStudyPlan } from "../service/adaptiveStudyPlanService.js";
+import { logActivity } from "../service/learningActivityService.js";
 
 /*
 =========================================================
@@ -761,6 +762,9 @@ export const updateSession =
        * Update session
        */
 
+      const wasCompleted =
+        targetSession.completed;
+
       targetSession.completed =
         completed;
 
@@ -770,6 +774,26 @@ export const updateSession =
           : null;
 
       await studyPlan.save();
+
+      /*
+       * Log learning activity only on the
+       * incomplete -> completed transition, so
+       * repeated toggles/retries never double-count.
+       */
+
+      if (!wasCompleted && completed) {
+        await logActivity({
+          userId,
+          activityType: "STUDY_PLAN_TASK_COMPLETED",
+          subject: goal.subject,
+          topic: targetSession.topic,
+          metadata: {
+            sessionType: targetSession.type,
+            title: targetSession.title,
+          },
+          occurredAt: targetSession.completedAt,
+        });
+      }
 
       /*
        * Calculate progress
@@ -919,12 +943,28 @@ export const updateMySession =
         return next(error);
       }
 
+      const wasCompleted = targetSession.completed;
+
       targetSession.completed = completed;
       targetSession.completedAt = completed
         ? new Date()
         : null;
 
       await studyPlan.save();
+
+      if (!wasCompleted && completed) {
+        await logActivity({
+          userId,
+          activityType: "STUDY_PLAN_TASK_COMPLETED",
+          subject: goal.subject,
+          topic: targetSession.topic,
+          metadata: {
+            sessionType: targetSession.type,
+            title: targetSession.title,
+          },
+          occurredAt: targetSession.completedAt,
+        });
+      }
 
       const allSessions = studyPlan.days.flatMap(
         (day) => day.sessions,

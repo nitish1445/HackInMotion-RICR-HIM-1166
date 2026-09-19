@@ -13,6 +13,7 @@ import {
 } from "../service/assessmentQuestionProvider.js";
 
 import { calculateAssessmentResult } from "../service/assessmentScoringService.js";
+import { logActivity } from "../service/learningActivityService.js";
 
 /*
 =========================================================
@@ -248,6 +249,17 @@ export const submitAssessment = async (req, res) => {
       strongTopics: result.strongTopics,
       weakTopics: result.weakTopics,
       completedAt: new Date(),
+    });
+
+    await logActivity({
+      userId: req.user._id,
+      activityType: "ASSESSMENT_COMPLETED",
+      subject: resolvedSubject,
+      metadata: {
+        percentage: savedResult.percentage,
+        level: savedResult.level,
+      },
+      occurredAt: savedResult.completedAt,
     });
 
     return res.status(201).json({

@@ -26,6 +26,7 @@ import {
 
 import { useAuth } from "../../context/AuthContext.jsx";
 import AssessmentStatusWidget from "./AssessmentStatusWidget.jsx";
+import LearningActivitySection from "./LearningActivitySection.jsx";
 
 const API_URL =
   import.meta.env.VITE_API_URL ||
@@ -437,6 +438,12 @@ const DashboardOverview = () => {
           helper="Learning points"
         />
       </section>
+
+      {/* =====================================================
+          LEARNING ACTIVITY & COMPETITIVE PROGRESS
+      ===================================================== */}
+
+      <LearningActivitySection />
 
       {/* =====================================================
           TODAY SUMMARY
