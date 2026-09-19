@@ -18,6 +18,7 @@ import {
 } from "../service/mockTestQuestionProvider.js";
 
 import { calculateTopicPerformance } from "../service/assessmentScoringService.js";
+import { logActivity } from "../service/learningActivityService.js";
 
 /*
 =========================================================
@@ -430,6 +431,18 @@ export const submitTest = async (req, res) => {
     testDoc.answers = answerDocs;
 
     await testDoc.save();
+
+    await logActivity({
+      userId: req.user._id,
+      activityType: "MOCK_TEST_COMPLETED",
+      subject: testDoc.subject,
+      metadata: {
+        percentage: testDoc.percentage,
+        totalQuestions: testDoc.totalQuestions,
+        difficulty: testDoc.difficulty,
+      },
+      occurredAt: testDoc.completedAt,
+    });
 
     return res.status(200).json({
       success: true,

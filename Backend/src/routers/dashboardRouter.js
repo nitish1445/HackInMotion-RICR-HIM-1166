@@ -9,6 +9,11 @@ import {
   addAchievement,
 } from "../controllers/dashboardController.js";
 
+import {
+  getLearningActivityOverview,
+  getCompetitionOverview,
+} from "../controllers/activityController.js";
+
 import { Protect } from "../middlewares/authMiddleware.js";
 
 const router = express.Router();
@@ -23,6 +28,24 @@ router.get(
   "/overview",
   Protect,
   getDashboardOverview
+);
+
+/*
+|--------------------------------------------------------------------------
+| Learning Activity & Competitive Progress
+|--------------------------------------------------------------------------
+*/
+
+router.get(
+  "/activity",
+  Protect,
+  getLearningActivityOverview
+);
+
+router.get(
+  "/competition",
+  Protect,
+  getCompetitionOverview
 );
 
 /*
