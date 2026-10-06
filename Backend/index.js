@@ -54,12 +54,14 @@ const app = express();
    CORS
 ========================================================= */
 
+const allowedOrigins = [
+  process.env.FRONTEND_URL || "http://localhost:5173",
+  "https://devlab-hackathon-project.vercel.app",
+];
+
 app.use(
   cors({
-    origin: [
-      "http://localhost:5173",
-      "https://devlab-hackathon-project.vercel.app",
-    ],
+    origin: allowedOrigins,
     credentials: true,
   })
 );
