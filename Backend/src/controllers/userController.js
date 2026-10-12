@@ -50,7 +50,7 @@ export const UserProfileUpdate = async (req, res, next) => {
         return next(error);
       }
 
-      user.mobileNumber = trimmedMobile;
+      user.mobileNumber = trimmedMobile || undefined;
     }
 
     // Bio

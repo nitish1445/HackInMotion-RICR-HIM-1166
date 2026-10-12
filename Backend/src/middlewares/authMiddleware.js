@@ -3,9 +3,7 @@ import User from "../models/userModel.js";
 
 export const Protect = async (req, res, next) => {
   try {
-    const token = req.cookies.DevLabToken;
-    console.log("cookies received", token);
-    console.log("Token received in cookies:", token);
+    const token = req.cookies.EduTechToken;
 
     if (!token) {
       const error = new Error("Unauthorized! Please Login Again.");
@@ -37,8 +35,7 @@ export const Protect = async (req, res, next) => {
 
 export const OtpProtect = async (req, res, next) => {
   try {
-    const token = req.cookies.DevLabOtpToken;
-    console.log("Token recived in cookies:", token);
+    const token = req.cookies.EduTechOtpToken;
 
     if (!token) {
       const error = new Error("Unauthorized! Please try again.");

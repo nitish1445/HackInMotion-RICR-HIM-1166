@@ -59,6 +59,20 @@ export const UserRegister = async (req, res, next) => {
       .status(201)
       .json({ message: "Registration Successfull !", data: userData });
   } catch (error) {
+    if (error?.code === 11000) {
+      const duplicateField = Object.keys(
+        error.keyPattern || error.keyValue || {},
+      )[0];
+      const duplicateError = new Error(
+        duplicateField === "email"
+          ? "Email Already Registered."
+          : "The supplied account information is already registered.",
+      );
+      duplicateError.statusCode = 409;
+      duplicateError.code = "DUPLICATE_KEY";
+      return next(duplicateError);
+    }
+
     next(error);
   }
 };

@@ -19,6 +19,7 @@ const userSchema = new mongoose.Schema(
     mobileNumber: {
       type: String,
       unique: true,
+      sparse: true,
       maxlength: 10,
     },
 

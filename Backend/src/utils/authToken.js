@@ -6,16 +6,19 @@ export const genToken = (user, res) => {
       id: user._id,
       role: user.role || "admin",
     };
-    
+
     const token = jwt.sign(payload, process.env.JWT_SECRET, {
       expiresIn: "7d",
     });
 
-    res.cookie("DevLabToken", token, {
+    // set isProduction to true in production environment
+    const isProduction = process.env.NODE_ENV === "production";
+
+    res.cookie("EduTechToken", token, {
       maxAge: 1000 * 60 * 60 * 24 * 7, // 7 days
       httpOnly: true,
-      secure: false,
-      sameSite: "lax",
+      secure: isProduction,
+      sameSite: isProduction ? "none" : "lax",
     });
   } catch (error) {
     throw error;
@@ -31,12 +34,14 @@ export const genOTPToken = (user, res) => {
     const token = jwt.sign(payload, process.env.JWT_SECRET, {
       expiresIn: "5m",
     });
-    console.log(token);
-    res.cookie("DevLabOtpToken", token, {
+
+    const isProduction = process.env.NODE_ENV === "production";
+
+    res.cookie("EduTechOtpToken", token, {
       maxAge: 1000 * 60 * 10,
       httpOnly: true,
-      secure: false,
-      sameSite: "lax",
+      secure: isProduction,
+      sameSite: isProduction ? "none" : "lax",
     });
   } catch (error) {
     throw error;
